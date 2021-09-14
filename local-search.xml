@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>C string to float number</title>
+    <link href="/2021/09/14/C-string-to-float-number/"/>
+    <url>/2021/09/14/C-string-to-float-number/</url>
+    
+    <content type="html"><![CDATA[<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">char</span> c;<br>c=getchar();<br><span class="hljs-keyword">double</span> data=<span class="hljs-number">0</span>;<br><span class="hljs-keyword">double</span> tans=<span class="hljs-number">1</span>;<br><span class="hljs-keyword">bool</span> flag=<span class="hljs-literal">true</span>;<br><span class="hljs-keyword">while</span>(c!=<span class="hljs-string">&#x27;#&#x27;</span>)&#123;<span class="hljs-comment">//#输入结束</span><br><span class="hljs-keyword">if</span>(c==<span class="hljs-string">&#x27;.&#x27;</span>)&#123;<br>flag=<span class="hljs-literal">false</span>;<br>c=getchar();<br><span class="hljs-keyword">continue</span>;<br>&#125;<br><span class="hljs-keyword">if</span>(flag)data=data*<span class="hljs-number">10</span>+c-<span class="hljs-string">&#x27;0&#x27;</span>;<br><span class="hljs-keyword">else</span> &#123;<br>tans*=<span class="hljs-number">0.1</span>;<br>data+=tans*(c-<span class="hljs-string">&#x27;0&#x27;</span>);<br>&#125;<br>&#125;<br>c=getchar();<br>&#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>c</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>My first blog</title>
     <link href="/2021/09/12/my-first-blog/"/>
     <url>/2021/09/12/my-first-blog/</url>
