@@ -18,7 +18,7 @@
   <meta name="author" content="Ding">
   <meta name="keywords" content="">
   
-  <title>C string to float number - AltriaT</title>
+  <title>KMP - AltriaT</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="C string to float number">
+            <span class="h2" id="subtitle" title="KMP">
               
             </span>
 
@@ -173,8 +173,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-09-14 21:45" pubdate>
-        2021年9月14日 晚上
+      <time datetime="2021-09-29 22:25" pubdate>
+        2021年9月29日 晚上
       </time>
     </span>
   
@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      70 字
+      854 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      11
        分钟
     </span>
   
@@ -225,10 +225,48 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">C string to float number</h1>
+            <h1 style="display: none">KMP</h1>
             
             <div class="markdown-body">
-              <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">char</span> c;<br>	c=getchar();<br>		<span class="hljs-keyword">double</span> data=<span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">double</span> tans=<span class="hljs-number">1</span>;<br>		<span class="hljs-keyword">bool</span> flag=<span class="hljs-literal">true</span>;<br>	<span class="hljs-keyword">while</span>(c!=<span class="hljs-string">&#x27;#&#x27;</span>)&#123;<span class="hljs-comment">//#输入结束</span><br>			<span class="hljs-keyword">if</span>(c==<span class="hljs-string">&#x27;.&#x27;</span>)&#123;<br>				flag=<span class="hljs-literal">false</span>;<br>				c=getchar();<br>				<span class="hljs-keyword">continue</span>;<br>			&#125;<br>			<span class="hljs-keyword">if</span>(flag)data=data*<span class="hljs-number">10</span>+c-<span class="hljs-string">&#x27;0&#x27;</span>;<br>			<span class="hljs-keyword">else</span> &#123;<br>				tans*=<span class="hljs-number">0.1</span>;<br>				data+=tans*(c-<span class="hljs-string">&#x27;0&#x27;</span>);<br>			&#125;<br>		&#125;<br>		c=getchar();<br>	&#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+              <p>#KMP算法</p>
+<p>1.朴素算法</p>
+<p>2.KMP算法的过程</p>
+<p>3.next数组求法</p>
+<p>4.KMP算法代码实现</p>
+<p>5.next数组优化</p>
+<p>##1.朴素算法</p>
+<p>  字符串匹配的朴素算法是文本串T与匹配串P逐个比较的过程。</p>
+<p><img src="D:\Blog\blog\source\img\KMP\1.png" srcset="/img/loading.gif" lazyload alt="朴素算法图"></p>
+ <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">kmp</span><span class="hljs-params">(string T,string P)</span></span>&#123;<br>	<span class="hljs-keyword">int</span> k=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>,j=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span>(i&lt;T.<span class="hljs-built_in">size</span>())&#123;<span class="hljs-comment">//遍历T中元素 </span><br>		<span class="hljs-keyword">if</span>(T[i]==P[j])i++,j++;<span class="hljs-comment">//对T[i]与P[j]对比，相等就比较下一位。 </span><br>		<span class="hljs-keyword">else</span> &#123; <br>			i=i-j+<span class="hljs-number">1</span>;<span class="hljs-comment">//不等就i指针到刚开始的下一位，j从头开始 </span><br>			j=<span class="hljs-number">0</span>;<br>		&#125;<br>		<span class="hljs-keyword">if</span>(j==P.<span class="hljs-built_in">size</span>())&#123;<span class="hljs-comment">//模式串匹配完，输出文本串的开始匹配的位置.</span><br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>,i-j);<br>		&#125;<br>	&#125;<br>&#125; <br></code></pre></td></tr></table></figure>
+
+<p>##2.KMP算法的过程</p>
+<p>​    KMP算法就比较机智的利用模式串中本身蕴含的信息跳过了一些不必要被比较。</p>
+<pre><code> 如下图，匹配失败，j回到图示绿色位置而i不变化，这样可以减少下一次比较次数且不会有丢落，原因就是P1,P2和S1串相同，我们利用已知的信息可以跳过从头开始比较相同子串的过程，并且这样相同的子串越长可节约的时间就越多。
+</code></pre>
+<img src="D:\Blog\blog\source\img\KMP\2.png" srcset="/img/loading.gif" lazyload alt="KMP过程图"  />
+
+<p>##3.next数组求法</p>
+<p>​    于是我们需要初始化求得一个信息表（next数组），来记录每一个字符前子串中的前缀与后缀相同的最大长度（前缀是不含子串最后一个字符的，同理后缀），并且这种性质一定藏在模式串P中，所以我们无需考虑文本串T,只对P操作就可以。</p>
+<p>​    比如：P: abaabcac</p>
+<p>​    0: a—没有相同   —下一个为a才行</p>
+<p>​    1: ab—最大前缀是a，最大后缀是b，没相同  —下一个为a才行</p>
+<p>​    2: aba—前缀是a，后缀是a最大，为1    —下一个字符要想加入最大前后缀必须为b</p>
+<p>​    3: abaa—不是b,但和首字符相同，为1    —下一个字符要想加入最大前后缀必须为b</p>
+<p>​    4:abaab—是b 为2    —下一个字符要想加入最大前后缀必须为a</p>
+<p>​    5:abaabc—不是a, 回到0:也不行，为0  —下一个为a才行</p>
+<p>​    6:abaabca—是a, 为1    —下一个为b才行对应2的条件</p>
+<p>​    可以看出这是一个递归的求解，下一个与前一个有关</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">get_next</span><span class="hljs-params">(string P,<span class="hljs-keyword">int</span> next[])</span></span>&#123;<br>	i=<span class="hljs-number">1</span>;next[<span class="hljs-number">1</span>]=<span class="hljs-number">0</span>;<br>    j=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span>(i&lt;P[<span class="hljs-number">0</span>])&#123;<br>        <span class="hljs-keyword">if</span>(j==<span class="hljs-number">0</span>||P[i]==P[j])&#123;i++;j++;next[i]=j;&#125;<br>        <span class="hljs-keyword">else</span> j=next[j];<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<img src="D:\Blog\blog\source\img\KMP\3.png" srcset="/img/loading.gif" lazyload alt="next" style="zoom:75%;" />
+
+<p>​    ##4.KMP算法代码实现</p>
+<p>KMP算法算法实现如下</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">kmp</span><span class="hljs-params">(<span class="hljs-keyword">char</span> T[],<span class="hljs-keyword">char</span> P[])</span></span>&#123;<br>	<span class="hljs-keyword">int</span> n,m;<br>	<span class="hljs-keyword">int</span>  ne[<span class="hljs-number">100010</span>];<br>	n=<span class="hljs-built_in">strlen</span>(T);<br>	m=<span class="hljs-built_in">strlen</span>(P);<br>	<span class="hljs-built_in">get_next</span>(P,ne);<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>,p=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;<br>		<span class="hljs-keyword">while</span>(p&gt;<span class="hljs-number">0</span>&amp;&amp;T[i]!=P[p])<span class="hljs-comment">//递归可以节约的点</span><br>			p=ne[p<span class="hljs-number">-1</span>];<br>		<span class="hljs-keyword">if</span>(T[i]==P[p])p++;<span class="hljs-comment">//匹配上就比较下一个</span><br>		<span class="hljs-keyword">if</span>(p==m)cout&lt;&lt;i-p+<span class="hljs-number">1</span>&lt;&lt;<span class="hljs-string">&#x27; &#x27;</span>;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>##5.next数组优化</p>
+<p>可以看出当T与P匹配不上时就去查找对应信息表，一直只查到可以匹配上或者开头。于是在get_next时就可以直接递归到位。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">get_next</span><span class="hljs-params">(<span class="hljs-keyword">char</span> p[],<span class="hljs-keyword">int</span>* ne)</span></span>&#123;<br>	<span class="hljs-keyword">int</span> m;<br>	m=<span class="hljs-built_in">strlen</span>(p);<br>	ne[<span class="hljs-number">0</span>]=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>,k=<span class="hljs-number">0</span>;i&lt;m;i++)&#123;<br>		<span class="hljs-keyword">while</span>(k&gt;<span class="hljs-number">0</span>&amp;&amp;p[i]!=p[k])<br>			k=p[k<span class="hljs-number">-1</span>];<br>		<span class="hljs-keyword">if</span>(p[i]==p[k])&#123;<br>			k++;<br>		&#125;<br>		ne[i]=k;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
             </div>
@@ -240,7 +278,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/c/">c</a>
+                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
                     
                   </div>
                 
@@ -257,18 +295,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/09/29/KMP/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">KMP</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/09/12/my-first-blog/">
-                        <span class="hidden-mobile">My first blog</span>
+                      <a href="/2021/09/14/C-string-to-float-number/">
+                        <span class="hidden-mobile">C string to float number</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
