@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>tree</title>
+    <link href="/2021/10/21/tree/"/>
+    <url>/2021/10/21/tree/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Tree"><a href="#Tree" class="headerlink" title="Tree"></a>Tree</h1><h3 id="1-definition"><a href="#1-definition" class="headerlink" title="1.definition"></a>1.definition</h3><p>​        树是n个（n&gt;=0）节点的有限集。当n=0时，称为空树。 在任意一棵非空树中应满足：</p><p>​        1.有且仅有一个特定的称为根的节点</p><p>​        2.当n&gt;1时, 其余节点可分为m（m&gt;0）个互不相交的有限集T1,T2,…,Tm，其中每个集合本身又是一颗树，并            且称为根的子树。</p><p>​        这个定义很明显是递归定义，即在树的定义中用到了自身。</p><p>​        树是一种递归的数据结构。</p><p>​        树作为一种逻辑结构具有以下两个特点：</p><p>​            1）树的根节点没有前驱，除根结点以外所有节点有且只有一个前驱。</p><p>​            2）树的所有节点可以拥有0或多个后继。</p><h3 id="2-trem"><a href="#2-trem" class="headerlink" title="2.trem"></a>2.trem</h3><p>​        树的高：数的最大层数。</p><p>​        节点的度：节点的孩子个数。（这里要区分离散数学里的度）</p><p>​        树的度：节点度最大的数</p><p>​        叶子节点：度为0的节点。</p><p>​        有序树：节点的左右子树从左到右有序。</p><p>​        无序树：节点的左右子树从左到右无序。</p><p>​        路径：两个节点的路径是这两个节点之间所经过节点序列构成的。</p><p>​        路径长度： 路径上所经过的边的个数。</p><h3 id="3-property"><a href="#3-property" class="headerlink" title="3.property"></a>3.property</h3><p>​        1）节点数=节点度数之和+1</p><p>​        2）度为m的树上，第层至多有$m^{i-1}$个节点。</p><p>​        3）高为h的m叉树至多有（$m^{h}$-1)(m-1)。</p><p>​        4）n个节点的m叉树的最小高度为$\log_m^{n(m-1)+1}$</p><h3 id="4-fores"><a href="#4-fores" class="headerlink" title="4.fores"></a>4.fores</h3><p>​        m棵互不相交树的集合。（他可以和书相互转换）</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>KMP</title>
     <link href="/2021/09/29/KMP/"/>
     <url>/2021/09/29/KMP/</url>
