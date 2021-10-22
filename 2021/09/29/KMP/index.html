@@ -234,12 +234,12 @@
 <p>4.KMP算法代码实现</p>
 <p>5.next数组优化</p>
 <h2 id="1-朴素算法"><a href="#1-朴素算法" class="headerlink" title="1.朴素算法"></a>1.朴素算法</h2><p>  字符串匹配的朴素算法是文本串T与匹配串P逐个比较的过程。</p>
-<p><img src="%5Cimg%5CKMP%5C1.png" srcset="/img/loading.gif" lazyload alt="朴素算法图"></p>
+<p><img src="/img/KMP/1.png" srcset="/img/loading.gif" lazyload alt="朴素算法图"></p>
  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">kmp</span><span class="hljs-params">(string T,string P)</span></span>&#123;<br>	<span class="hljs-keyword">int</span> k=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>,j=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span>(i&lt;T.<span class="hljs-built_in">size</span>())&#123;<span class="hljs-comment">//遍历T中元素 </span><br>		<span class="hljs-keyword">if</span>(T[i]==P[j])i++,j++;<span class="hljs-comment">//对T[i]与P[j]对比，相等就比较下一位。 </span><br>		<span class="hljs-keyword">else</span> &#123; <br>			i=i-j+<span class="hljs-number">1</span>;<span class="hljs-comment">//不等就i指针到刚开始的下一位，j从头开始 </span><br>			j=<span class="hljs-number">0</span>;<br>		&#125;<br>		<span class="hljs-keyword">if</span>(j==P.<span class="hljs-built_in">size</span>())&#123;<span class="hljs-comment">//模式串匹配完，输出文本串的开始匹配的位置.</span><br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>,i-j);<br>		&#125;<br>	&#125;<br>&#125; <br></code></pre></td></tr></table></figure>
 
 <h2 id="2-KMP算法的过程"><a href="#2-KMP算法的过程" class="headerlink" title="2.KMP算法的过程"></a>2.KMP算法的过程</h2><p>​    KMP算法就比较机智的利用模式串中本身蕴含的信息跳过了一些不必要被比较。</p>
 <p>如下图，匹配失败，j回到图示绿色位置而i不变化，这样可以减少下一次比较次数且不会有丢落，原因就是P1,P2和S1串相同，我们利用已知的信息可以跳过从头开始比较相同子串的过程，并且这样相同的子串越长可节约的时间就越多。</p>
-<p><img src="%5Cimg%5CKMP%5C2.png" srcset="/img/loading.gif" lazyload alt="KMP过程图"></p>
+<p><img src="/img/KMP2.png" srcset="/img/loading.gif" lazyload alt="KMP过程图"></p>
 <h2 id="3-next数组求法"><a href="#3-next数组求法" class="headerlink" title="3.next数组求法"></a>3.next数组求法</h2><p>​    于是我们需要初始化求得一个信息表（next数组），来记录每一个字符前子串中的前缀与后缀相同的最大长度（前缀是不含子串最后一个字符的，同理后缀），并且这种性质一定藏在模式串P中，所以我们无需考虑文本串T,只对P操作就可以。</p>
 <p>​    比如：P: $abaabcac$</p>
 <p>​    0: a—没有相同   —下一个为a才行</p>
@@ -252,7 +252,7 @@
 <p>​    可以看出这是一个递归的求解，下一个与前一个有关</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">get_next</span><span class="hljs-params">(string P,<span class="hljs-keyword">int</span> next[])</span></span>&#123;<br>	i=<span class="hljs-number">1</span>;next[<span class="hljs-number">1</span>]=<span class="hljs-number">0</span>;<br>    j=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span>(i&lt;P[<span class="hljs-number">0</span>])&#123;<br>        <span class="hljs-keyword">if</span>(j==<span class="hljs-number">0</span>||P[i]==P[j])&#123;i++;j++;next[i]=j;&#125;<br>        <span class="hljs-keyword">else</span> j=next[j];<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p><img src="%5Cimg%5CKMP%5C3.png" srcset="/img/loading.gif" lazyload alt="next"></p>
+<p><img src="/img/KMP/3.png" srcset="/img/loading.gif" lazyload alt="next"></p>
 <pre><code>## 4.KMP算法代码实现
 </code></pre>
 <p>KMP算法算法实现如下</p>
