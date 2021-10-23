@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>binary tree</title>
+    <link href="/2021/10/22/binary-tree/"/>
+    <url>/2021/10/22/binary-tree/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Binary-tree"><a href="#Binary-tree" class="headerlink" title="Binary tree"></a>Binary tree</h1><h2 id="definition"><a href="#definition" class="headerlink" title="definition"></a>definition</h2><p>​    二叉树是另一种树形结构，其特点是每个结点至多有两棵子树（即二叉树中不存在度大于二节点），并且二叉树的子树有左右之分，其次序不能任意颠倒。</p><p>​    二叉树也是递归定义。二叉树是n(n&gt;=0)个结点的有限集合：</p><ol><li><p>或者为空二叉树，即n=0。</p></li><li><p>或者为一个根结点和两个互不相交的被称为根的左子树和右子树组成。左子树和右子树有分别是一棵二叉树。</p><p>二叉树是有序树，若其左右子树颠倒，则成为另一棵不同的二叉树。即使树中结点只有一棵子树，也要区分他是左子树还是右子树。二叉树的5种基本状态就看书吧。</p></li></ol><p>二叉树与度为2的有序树的区别：</p><p>​    1.度为2的树至少有3个结点，而二叉树可以为空。</p><p>​    2.度为2的有序树的孩子的左右次序是相当于另一孩子而言，若某个结点只有一个孩子，则这个孩子就无需区分其左右次序，而二叉树无论其左右孩子是否为2，均为确定其左右次序，即二叉树的结点次序不是相对于另一结点而言，而确定的。</p><h2 id="Special-binary-tree"><a href="#Special-binary-tree" class="headerlink" title="Special binary tree"></a>Special binary tree</h2><p>​    1.满二叉树：高为h，且含有$2^{h}-1$的结点的二叉树称为满二叉树，即树中每层都含有最多节点。可用序号表述，若双亲结点为$i/2$,则有左右孩子时，左孩子为$2<em>i$,右孩子为$2</em>i+1$。</p><p>​    2.完全二叉树：就是将要成为满二叉树，最后一层可能与满二叉树不同的树。</p><p>​        1）若$i&lt;n//2$,他就是分支节点。</p><p>​        2）若有度为一的结点，则只有一个，且只有左孩子。</p><p>​        3）一旦出现度为1的结点，它后面全是叶子节点。</p><p>​        4）n为奇数，则每个分支都有左右孩子，若n为偶数，则序号的最大分支结点（编号为$n/2$）只有左孩子，其余没得左右孩子。</p><p>​    3.  二叉排序树：左子树上的结点均小于根节点的关键字。右子树上所有节点的关键字都大于根节点的关键字。左子树和右子树又是二叉排序树。</p><p>​    4.平衡二叉树：树上任意节点的左子树和右子树的深度只差不超过1。</p><h2 id="property"><a href="#property" class="headerlink" title="property"></a>property</h2><ol><li>非二叉树上的叶子结点数等于度为2的节点数加1，即n0=n2+1。</li><li>非空二叉树第k层上至多有$2^{k-1}$个结点。</li><li>高度为h的二叉树至多有$2^h-1$个结点。</li><li>具有n个结点的完全二叉树的高度为$\lfloor log_2{n+1}\rfloor$或$\lceil log_2{n}+1 \rceil$</li><li>$2^{h-1}-1&lt;n&lt;=2^{h}-1$或$2^{h-1}&lt;=n&lt;2^h$</li></ol><h2 id="storage-structure"><a href="#storage-structure" class="headerlink" title="storage structure"></a>storage structure</h2><p>1.顺序存储结构</p><p>​    有一段连续的地址存储单元，自上而下，自左而右存储完全而完全二叉树上的结点。</p><p>​    缺点： 浪费空间</p><p>​    优点：好查找</p><p>2.链式结构存储</p><p><img src="/img/tree/1.png" alt="链式结构"></p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">BiTNode</span>&#123;</span><br>ElemType data;<br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">BiTNode</span> *<span class="hljs-title">lchild</span>,*<span class="hljs-title">rchild</span>;</span><br>&#125;*BiTree,BiTNode;<br></code></pre></td></tr></table></figure><p>优点：空间利用率高</p><p>缺点：需要的查找时间长</p><p>​    </p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>data structure</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>tree</title>
     <link href="/2021/10/21/tree/"/>
     <url>/2021/10/21/tree/</url>
