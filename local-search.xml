@@ -4,44 +4,6 @@
   
   
   <entry>
-    <title>confidence interval</title>
-    <link href="/2021/11/10/confidence-interval/"/>
-    <url>/2021/11/10/confidence-interval/</url>
-    
-    <content type="html"><![CDATA[<h1 id="confidence-interval"><a href="#confidence-interval" class="headerlink" title="confidence interval"></a>confidence interval</h1><p>I want talk some comprehend about confidence interval.</p><ol><li>点估计是使用样本来确定函数中具体的参数，默认可取到的样本发生概率很大。</li><li> 而区间估计是通过样本确定了一个参数可能取到的区间，这个区间是一个由随机变量确定的随机区间。</li><li>只有样本变量确定了区间才会确定。</li></ol>]]></content>
-    
-    
-    
-    <tags>
-      
-      <tag>Inferential statistics</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>numberical characteristics</title>
-    <link href="/2021/11/03/numberical-characteristics/"/>
-    <url>/2021/11/03/numberical-characteristics/</url>
-    
-    <content type="html"><![CDATA[]]></content>
-    
-    
-    
-    <tags>
-      
-      <tag>probability theory</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>HuffmanTree</title>
     <link href="/2021/10/31/HuffmanTree/"/>
     <url>/2021/10/31/HuffmanTree/</url>
