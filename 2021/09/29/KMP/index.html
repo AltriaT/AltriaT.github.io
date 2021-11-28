@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      852 字
+      986 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11
+      14
        分钟
     </span>
   
@@ -260,6 +260,10 @@
 
 <h2 id="5-next数组优化"><a href="#5-next数组优化" class="headerlink" title="5.next数组优化"></a>5.next数组优化</h2><p>可以看出当T与P匹配不上时就去查找对应信息表，一直只查到可以匹配上或者开头。于是在get_next时就可以直接递归到位。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">get_next</span><span class="hljs-params">(<span class="hljs-keyword">char</span> p[],<span class="hljs-keyword">int</span>* ne)</span></span>&#123;<br>	<span class="hljs-keyword">int</span> m;<br>	m=<span class="hljs-built_in">strlen</span>(p);<br>	ne[<span class="hljs-number">0</span>]=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>,k=<span class="hljs-number">0</span>;i&lt;m;i++)&#123;<br>		<span class="hljs-keyword">while</span>(k&gt;<span class="hljs-number">0</span>&amp;&amp;p[i]!=p[k])<br>			k=p[k<span class="hljs-number">-1</span>];<br>		<span class="hljs-keyword">if</span>(p[i]==p[k])&#123;<br>			k++;<br>		&#125;<br>		ne[i]=k;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="AcWing版代码"><a href="#AcWing版代码" class="headerlink" title="AcWing版代码"></a>AcWing版代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">1000010</span>;<br><span class="hljs-keyword">int</span> n,m;<br><span class="hljs-keyword">int</span> ne[N];<br><span class="hljs-keyword">char</span> T[N],P[N];<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">make_next</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    ne[<span class="hljs-number">0</span>]=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>,j=<span class="hljs-number">0</span>;i&lt;m;i++)<br>    &#123;<br>		<span class="hljs-keyword">while</span>(j&amp;&amp;P[i]!=P[j])j=ne[j<span class="hljs-number">-1</span>];<br>        <span class="hljs-keyword">if</span>(P[i]==P[j])j++;<br>        ne[i]=j;<br>    &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">kmp</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-built_in">make_next</span>();<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>,j=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;<br>		<span class="hljs-keyword">while</span>(j&amp;&amp;T[i]!=P[j])j=ne[j<span class="hljs-number">-1</span>];<br>        <span class="hljs-keyword">if</span>(T[i]==P[j])j++;<br>        <span class="hljs-keyword">if</span>(j==m)cout&lt;&lt;i-j+<span class="hljs-number">1</span>&lt;&lt;<span class="hljs-string">&quot; &quot;</span>;<br>    &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	cin&gt;&gt;m&gt;&gt;P&gt;&gt;n&gt;&gt;T;<br>    <span class="hljs-built_in">kmp</span>();<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
 
 
             </div>
