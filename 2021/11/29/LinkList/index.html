@@ -18,7 +18,7 @@
   <meta name="author" content="Ding">
   <meta name="keywords" content="">
   
-  <title>HushTable - AltriaT</title>
+  <title>LinkList - AltriaT</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="HushTable">
+            <span class="h2" id="subtitle" title="LinkList">
               
             </span>
 
@@ -173,8 +173,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-11-26 20:06" pubdate>
-        2021年11月26日 晚上
+      <time datetime="2021-11-29 17:16" pubdate>
+        2021年11月29日 下午
       </time>
     </span>
   
@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      734 字
+      307 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8
+      5
        分钟
     </span>
   
@@ -225,73 +225,39 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">HushTable</h1>
+            <h1 style="display: none">LinkList</h1>
             
             <div class="markdown-body">
-              <h1 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h1><h2 id="哈希表是用来做什么的？"><a href="#哈希表是用来做什么的？" class="headerlink" title="哈希表是用来做什么的？"></a>哈希表是用来做什么的？</h2><p>​    以平均常数时间对关键字进行查找、删除、插入。</p>
-<p>​    hash表是为了以最快的时间查找到内容，同时保证空间利用的高效，可以说是和珅最爱了。</p>
-<p>​    就好比一个3个字母的英语单词我们可以把它看成一个三维空间的点，然后我们把他表示成一个数的方式是从（0，0，0）标记成0，（25,25,25）标记成$26\times 26\times 26$。然后中间的某一单词就是$26^2 \times x+26\times y+z $，对于更长的单词是更高次幂的多项式表示。</p>
-<p>这种方式查找是快了，但对空间的浪费很大。常用的单词并没有这么多。</p>
-<p>哈希通过散列函数将关键字<strong>x</strong> (可以是任意值)映射为<strong>y</strong> (某一地址)。好的散列函数既要保证空间利用的高效，又要照顾查找的快慢。</p>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="如何选择散列函数"><a href="#如何选择散列函数" class="headerlink" title="如何选择散列函数"></a>如何选择散列函数</h3><ol>
-<li>直接地址法：H(key)=key, H(key)=$a \times key+b$</li>
-<li>除留余数法：H(key)=key%p</li>
-<li>数字分析法：找数字段中在散列表中可以分布均匀的的地方</li>
-<li>平方取中法：取平方值的中间几位作为散列地址</li>
-</ol>
-<p>我们主要讨论除留取余法。</p>
-<p>​    字符串处理方法：</p>
-<ol>
-<li>$\sum_{i=0}^nASCII(key[i])\mod p$</li>
-<li>将字符串长度看成维度扁平化为一维数字，然后将扁平化后的数字mod p</li>
-<li>将2.的扁平化用秦九韶算法优化，将乘法变为左移提高速度。</li>
-</ol>
-<h3 id="哈希函数产生的冲突"><a href="#哈希函数产生的冲突" class="headerlink" title="哈希函数产生的冲突"></a>哈希函数产生的冲突</h3><p>​    不同数字之间的余数可能会相同，不同字符串的字符值求和也可能相同，种种原因等导致最后哈希函数计算出的哈希地址相同，这种情况称为冲突。</p>
-<p>冲突是哈希函数尽量避免而又避免不了的，那么我们又将如何处理和减少冲突呢。</p>
-<ol>
-<li><p>选择合适的素数为哈希表大小，减少冲突</p>
-</li>
-<li><p>用合适的方法处理，处理冲突</p>
-<ol>
-<li><p>分离链式法：将重复的值在同一单链表中。</p>
-</li>
-<li><p>开放地址法：</p>
-<p>$h_i(key)=(Hash(key)+F(i)) \mod p $</p>
-<p>冲突后就将地址用F（i）偏移到其他地方，i 代表偏移次数。</p>
-<p>以下是常用的偏移方法</p>
-<p>方法一：线性探测法</p>
-<p>​    F(i)=i</p>
-<p>​    这样容易形成一次聚集区块，导致查找时间变长。</p>
-<p>方法二：平方探测法</p>
-<p>​    $F(i)=(-1)^{i}\times i^2$，k&lt;=m/2，散列表长度m必须是一个可以表示成$4\times k+3$的素数，称为二次探测法。</p>
-<p>​    避免了堆积，但不能用上所有单元，但至少能探测到一半单元。</p>
-<p>方法三：再散列</p>
-<p>​    F(i)=$i\times Hush_2(key)$</p>
-<p>​    经过表长次回到原点</p>
-</li>
-</ol>
-</li>
-</ol>
+              <h1 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h1><h2 id="单链表"><a href="#单链表" class="headerlink" title="单链表"></a>单链表</h2><p>单链表是最简单的链式结构，也是一切的基础。</p>
+<p>先来看看它的结构</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">LNode</span>&#123;</span><br>	<span class="hljs-keyword">int</span> data;<span class="hljs-comment">//存的数据</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">LNode</span> *<span class="hljs-title">next</span>;</span><span class="hljs-comment">//指向下一个节点的指针</span><br>&#125;LNode,*SqList;<br></code></pre></td></tr></table></figure>
+
+<p>创建一个单链表有多种方法</p>
+<h3 id="头插法"><a href="#头插法" class="headerlink" title="头插法"></a>头插法</h3><p>有头结点</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">FILO_H</span><span class="hljs-params">(SqList &amp;S,<span class="hljs-keyword">int</span> n)</span></span>&#123;<br>    S=(SqList)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(LNode));<br>    S-&gt;next=<span class="hljs-literal">NULL</span>;<br>	<span class="hljs-keyword">while</span>(n--)&#123;<br>		SqList q=(SqList)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(LNode));<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;q-&gt;data);<br>        q-&gt;next=S-&gt;next;<br>        S-&gt;next=q;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>无头结点</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">FILO</span><span class="hljs-params">(SqList &amp;S,<span class="hljs-keyword">int</span> n)</span></span>&#123;<br>	SqList q;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;<br>		<span class="hljs-keyword">if</span>(!i)&#123;<br>			S=(SqList)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(LNode));<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;S-&gt;data);<br>			S-&gt;next=<span class="hljs-literal">NULL</span>;<br>			<span class="hljs-keyword">continue</span>;<br>		&#125;<br>		q=S;<br>		S=(SqList)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(LNode));<br>		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;S-&gt;data);<br>		S-&gt;next=q;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="尾插法"><a href="#尾插法" class="headerlink" title="尾插法"></a>尾插法</h3><p>有头节点</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function">SqList <span class="hljs-title">FIFO_H</span><span class="hljs-params">(SqList &amp;q)</span></span>&#123;<br>	SqList p;<br>	p=(SqList)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(LNode));<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;p-&gt;data);<br>	p-&gt;next=q-&gt;next;<br>	q-&gt;next=p;<br>	<span class="hljs-keyword">return</span> p;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>无头节点</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">FIFO</span><span class="hljs-params">(SqList &amp;S,<span class="hljs-keyword">int</span> n)</span></span>&#123;<br>	SqList r,q;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;<br>		<span class="hljs-keyword">if</span>(!i)&#123;<br>			S=(SqList)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(LNode));<br>            <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;S-&gt;data);<br>            S-&gt;next=<span class="hljs-literal">NULL</span>;<br>            r=S;<br>            <span class="hljs-keyword">continue</span>;<br>        &#125;<br>        q=(SqList)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(LNode));<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;q-&gt;data);<br>        q-&gt;next=r-&gt;next;<br>        r-&gt;next=q;<br>        r=r-&gt;next;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-                    
-                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%9F%A5%E6%89%BE/">查找</a>
-                    
-                  </div>
-                
                 
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/data-structure/">data structure</a>
+                      <a class="hover-with-bg" href="/tags/%E9%93%BE%E8%A1%A8/">链表</a>
                     
                   </div>
                 
@@ -308,18 +274,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/11/29/LinkList/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">LinkList</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/11/25/graph2/">
-                        <span class="hidden-mobile">graph2</span>
+                      <a href="/2021/11/26/HushTable/">
+                        <span class="hidden-mobile">HushTable</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -341,8 +301,8 @@
     
       <script type="text/javascript">
         var disqus_config = function() {
-          this.page.url = 'http://altriat.top/2021/11/26/HushTable/';
-          this.page.identifier = '/2021/11/26/HushTable/';
+          this.page.url = 'http://altriat.top/2021/11/29/LinkList/';
+          this.page.identifier = '/2021/11/29/LinkList/';
         };
         Fluid.utils.loadComments('#disqus_thread', function() {
           var d = document, s = d.createElement('script');
