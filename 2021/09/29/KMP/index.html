@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      986 字
+      1k 字
     </span>
   
 
@@ -240,7 +240,9 @@
 <h2 id="2-KMP算法的过程"><a href="#2-KMP算法的过程" class="headerlink" title="2.KMP算法的过程"></a>2.KMP算法的过程</h2><p>​    KMP算法就比较机智的利用模式串中本身蕴含的信息跳过了一些不必要被比较。</p>
 <p>如下图，匹配失败，j回到图示绿色位置而i不变化，这样可以减少下一次比较次数且不会有丢落，原因就是P1,P2和S1串相同，我们利用已知的信息可以跳过从头开始比较相同子串的过程，并且这样相同的子串越长可节约的时间就越多。</p>
 <p><img src="/img/KMP2.png" srcset="/img/loading.gif" lazyload alt="KMP过程图"></p>
-<h2 id="3-next数组求法"><a href="#3-next数组求法" class="headerlink" title="3.next数组求法"></a>3.next数组求法</h2><p>​    于是我们需要初始化求得一个信息表（next数组），来记录每一个字符前子串中的前缀与后缀相同的最大长度（前缀是不含子串最后一个字符的，同理后缀），并且这种性质一定藏在模式串P中，所以我们无需考虑文本串T,只对P操作就可以。</p>
+<h2 id="3-next数组求法"><a href="#3-next数组求法" class="headerlink" title="3.next数组求法"></a>3.next数组求法</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1hW411a7ys?spm_id_from=333.999.0.0">KMP字符串匹配算法2_哔哩哔哩_bilibili</a></p>
+<p>下面的解释看到6：20就行。</p>
+<p>​    于是我们需要初始化求得一个信息表（next数组），来记录每一个字符前子串中的前缀与后缀相同的最大长度（前缀是不含子串最后一个字符的，同理后缀），并且这种性质一定藏在模式串P中，所以我们无需考虑文本串T,只对P操作就可以。</p>
 <p>​    比如：P: $abaabcac$</p>
 <p>​    0: a—没有相同   —下一个为a才行</p>
 <p>​    1: ab—最大前缀是a，最大后缀是b，没相同  —下一个为a才行</p>
