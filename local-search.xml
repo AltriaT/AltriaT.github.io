@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>高精度A+B</title>
+    <link href="/2021/11/30/%E9%AB%98%E7%B2%BE%E5%BA%A6A+B/"/>
+    <url>/2021/11/30/%E9%AB%98%E7%B2%BE%E5%BA%A6A+B/</url>
+    
+    <content type="html"><![CDATA[<h1 id="高精度A-B"><a href="#高精度A-B" class="headerlink" title="高精度A+B"></a>高精度A+B</h1><h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>c语言int 最大是$2^{31}-1$，64位电脑下long 和long long 最大是 $2^{63}-1$。</p><p>于是我们再进行高精度计算时，如果数值超过$2^{63}-1$就无法存储了。</p><p>我们会想用double来计算，但浮点数是用二进制模拟的，不准确，有误差。</p><p>于是我们需要用一种更高精度的方式来计算高精度A+B。</p><h2 id="思维"><a href="#思维" class="headerlink" title="思维"></a>思维</h2><p>在小学，我们都学过加法运算吧。我们的方法就是模拟这个过程来计算，再将计算的数值存入一个无限长的表里。最终输出这个表，就是答案了。</p><p>先来看看小学的方式</p><p>image<img src="/img/%E7%AE%97%E6%B3%95/A+B.png" alt="A+B"></p><p>这个表选择vector作为容器。不会vector看这里<a href="https://www.runoob.com/w3cnote/cpp-vector-container-analysis.html">C++ vector 容器浅析 | 菜鸟教程 (runoob.com)</a></p><p>计算过程就是A的k位加B的k位，将位数的个位存入表，将十位存入t。</p><p>下一次，将A的k位加B的k位+t，将位数的个位存入表，将十位存入t。</p><p>直到，A或B都加到头。（已经到头的就不加入了比如B到头就是 A[k]+t）</p><p>最终，有进位的t就在表里加1，就结束了。</p><p>这就是小学计算加法的过程。</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">add</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt; A,vector&lt;<span class="hljs-keyword">int</span>&gt; B)</span></span>&#123;<br>vector&lt;<span class="hljs-keyword">int</span>&gt; C;<span class="hljs-comment">//结果</span><br>    <span class="hljs-keyword">int</span> t=<span class="hljs-number">0</span>;<span class="hljs-comment">//位数相加的结果</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;A.<span class="hljs-built_in">size</span>()||i&lt;B.<span class="hljs-built_in">size</span>();i++)&#123;<br><span class="hljs-keyword">if</span>(i&lt;A.<span class="hljs-built_in">size</span>())t+=A[i];<br>         <span class="hljs-keyword">if</span>(i&lt;B.<span class="hljs-built_in">size</span>())t+=B[i];<br>        C.<span class="hljs-built_in">push_back</span>(t%<span class="hljs-number">10</span>);<br>        t/=<span class="hljs-number">10</span>;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(t)C.<span class="hljs-built_in">push_back</span>(<span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">return</span> C;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>string a,b;<br>    cin&gt;&gt;a&gt;&gt;b;<br>    vector&lt;<span class="hljs-keyword">int</span>&gt; A,B,C;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=a.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>;i&gt;=<span class="hljs-number">0</span>;i--)A.<span class="hljs-built_in">push_back</span>(a[i]-<span class="hljs-string">&#x27;0&#x27;</span>);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=b.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>;i&gt;=<span class="hljs-number">0</span>;i--)B.<span class="hljs-built_in">push_back</span>(b[i]-<span class="hljs-string">&#x27;0&#x27;</span>);<br>    C=<span class="hljs-built_in">add</span>(A,B);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=C.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>;i&gt;=<span class="hljs-number">0</span>;i--)cout&lt;&lt;C[i];<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>data structure</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>LinkList</title>
     <link href="/2021/11/29/LinkList/"/>
     <url>/2021/11/29/LinkList/</url>
