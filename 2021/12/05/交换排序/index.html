@@ -18,7 +18,7 @@
   <meta name="author" content="Ding">
   <meta name="keywords" content="">
   
-  <title>插入排序 - AltriaT</title>
+  <title>交换排序 - AltriaT</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="插入排序">
+            <span class="h2" id="subtitle" title="交换排序">
               
             </span>
 
@@ -173,7 +173,7 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-12-05 19:12" pubdate>
+      <time datetime="2021-12-05 20:17" pubdate>
         2021年12月5日 晚上
       </time>
     </span>
@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      709 字
+      359 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      9
+      5
        分钟
     </span>
   
@@ -225,34 +225,28 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">插入排序</h1>
+            <h1 style="display: none">交换排序</h1>
             
             <div class="markdown-body">
-              <h1 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h1><h2 id="什么是插入排序"><a href="#什么是插入排序" class="headerlink" title="什么是插入排序"></a>什么是插入排序</h2><p>插入排序就是将待排序的关键字按其关键字大小插入到前面已经排好的序列，直到所有关键字插入完毕。</p>
-<p>插入排序有：直接插入排序，折半插入排序，希尔排序。</p>
-<h2 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a>直接插入排序</h2><p>先把前面排好序，然后后面的关键字与其前面的比大小，找到合适的位置，插入(其实是边比边后移)。</p>
-<p>往往第一个元素我们当作已经有序，所以从第二个开始。</p>
-<p>这里是排为从小到大</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">InsertSort</span><span class="hljs-params">(ElemType A[],<span class="hljs-keyword">int</span> n)</span></span>&#123;<br>    <span class="hljs-keyword">int</span> i,j;<br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">2</span>;i&lt;=n;i++)&#123;<span class="hljs-comment">//第0个当哨兵，第1个已经有序了。</span><br>		<span class="hljs-keyword">if</span>(A[i]&lt;A[i<span class="hljs-number">-1</span>])&#123;<br>			A[<span class="hljs-number">0</span>]=A[i];<br>             <span class="hljs-keyword">for</span>(j=i<span class="hljs-number">-1</span>;A[<span class="hljs-number">0</span>]&lt;A[j];j--)&#123;<br>				A[j+<span class="hljs-number">1</span>]=A[j];<br>             &#125;<br>            A[j+<span class="hljs-number">1</span>]=A[<span class="hljs-number">0</span>];<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+              <h1 id="交换排序"><a href="#交换排序" class="headerlink" title="交换排序"></a>交换排序</h1><h2 id="什么是交换排序"><a href="#什么是交换排序" class="headerlink" title="什么是交换排序"></a>什么是交换排序</h2><p>时时比较交换。</p>
+<p>分类：冒泡排序，快速排序。</p>
+<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p>冒泡排序就好比水里的气泡从底部逐渐冒出水面。</p>
+<p>原理就是从前往后比较相邻两个数，若逆序就交换，直到一趟比完。最终（不看前面已经排好的）第一位一定是最值。倘若中间有不交换的一趟，就结束，证明已经排好。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">qsort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> A[],<span class="hljs-keyword">int</span> n)</span></span>&#123;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n<span class="hljs-number">-1</span>;i++)&#123;<br>        <span class="hljs-keyword">int</span> flag=<span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=i;j&lt;=n<span class="hljs-number">-1</span>;j++)&#123;<br>			<span class="hljs-keyword">if</span>(A[j<span class="hljs-number">-1</span>]&gt;A[j])&#123;<br>				<span class="hljs-built_in">swap</span>(A[j<span class="hljs-number">-1</span>],A[j]);<br>             	 flag=<span class="hljs-number">1</span>;<br>            &#125;<br>            <span class="hljs-keyword">if</span>(flag)<span class="hljs-keyword">break</span>;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>考试会考排序过程的第几趟。</p>
-<p>当顺序刚好是需要的顺序，进行n-1趟，每一趟又是比较1次。所以是O(n)。</p>
-<p>当刚好逆序的时候，进行n-1趟，每一趟又是比较$i$次。所以是$O(n^2)$。</p>
 <p>时间复杂度：$O(n^2)$</p>
 <p>稳定性：稳定</p>
-<h2 id="折半插入排序"><a href="#折半插入排序" class="headerlink" title="折半插入排序"></a>折半插入排序</h2><p>前面不是已经有序了吗，然后就用二分查找直接查出对应位置，减少查找时间复杂度。后移，插入。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">sort</span><span class="hljs-params">(ElemType A[],<span class="hljs-keyword">int</span> n)</span></span>&#123;<br>	<span class="hljs-keyword">int</span> i,j;<br>    <span class="hljs-keyword">int</span> r,l,mid;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i&lt;=n;i++)&#123;<br>		l=<span class="hljs-number">1</span>,r=i<span class="hljs-number">-1</span>;<br>        <span class="hljs-keyword">if</span>(A[i]&lt;A[i<span class="hljs-number">-1</span>])&#123;<br>        	<span class="hljs-keyword">while</span>(l&lt;=r)&#123;<br>				mid=l+r&gt;&gt;<span class="hljs-number">1</span>;<br>            	<span class="hljs-keyword">if</span>(A[mid]&lt;=A[<span class="hljs-number">0</span>])l=mid+<span class="hljs-number">1</span>;<br>                <span class="hljs-keyword">else</span> r=mid<span class="hljs-number">-1</span>;<br>        	&#125;<br>            <span class="hljs-keyword">for</span>(j=i<span class="hljs-number">-1</span>;j&gt;=r+<span class="hljs-number">1</span>;j--)A[j+<span class="hljs-number">1</span>]=A[j];<br>            A[r+<span class="hljs-number">1</span>]=A[<span class="hljs-number">0</span>];<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>快速排序是基于分治。</p>
+<p>严蔚敏版</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">Partition</span><span class="hljs-params">(<span class="hljs-keyword">int</span> A[],<span class="hljs-keyword">int</span> l,<span class="hljs-keyword">int</span> r)</span></span>&#123;<br>	<span class="hljs-keyword">int</span> x=A[l];<br>    <span class="hljs-keyword">while</span>(l&lt;r)&#123;<br>		<span class="hljs-keyword">while</span>(A[r]&gt;=x)r--;<br>        A[l]=A[r];<br>         <span class="hljs-keyword">while</span>(A[l]&lt;=x)l++;<br>        A[r]=A[l];<br>    &#125;<br>    A[l]=x;<br>    <span class="hljs-keyword">return</span> l;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> A[],<span class="hljs-keyword">int</span> l,<span class="hljs-keyword">int</span> r)</span></span>&#123;<br>	<span class="hljs-keyword">if</span>(l&gt;=r)<span class="hljs-keyword">return</span> ;<br>    <span class="hljs-keyword">int</span> p=<span class="hljs-built_in">Partition</span>(A,l,r);<br>    <span class="hljs-built_in">sort</span>(A,l,p<span class="hljs-number">-1</span>);<br>    <span class="hljs-built_in">sort</span>(A,p+<span class="hljs-number">1</span>,r);<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>这个算法只是减少查找的时间，并没有减少移动的时间，也就是说最后时间复杂度还是$O(n^2)$。</p>
-<p>稳定性：稳定。</p>
-<h2 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h2><p>这个是真正减少了时间。</p>
-<p>思想就是,上面的时间复杂度是顺序的时候小，我们就需要，要表逐渐的有一定的顺序。</p>
-<p>方法是：第一次用n/2进行间隔插入排序，下一次是上一次数的一半。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">qsort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> A[],<span class="hljs-keyword">int</span> n)</span></span>&#123;<br>    <span class="hljs-keyword">int</span> i,j,dk;<br>	<span class="hljs-keyword">for</span>(dk=n/<span class="hljs-number">2</span>;dk&gt;=<span class="hljs-number">1</span>;dk=dk&gt;&gt;<span class="hljs-number">1</span>)&#123;<br>        <span class="hljs-comment">//以下-dk操作，均可类比简单排的-1操作,每次比较的不再是前1个，而是前dk个</span><br>		<span class="hljs-keyword">for</span>(i=dk+<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>			<span class="hljs-keyword">if</span>(A[i]&lt;A[i-dk])&#123;<br>				A[<span class="hljs-number">0</span>]=A[i];<br>                 <span class="hljs-keyword">for</span>(j=i-dk;j&gt;<span class="hljs-number">0</span>&amp;&amp;A[<span class="hljs-number">0</span>]&lt;A[j];j-=dk)&#123;<span class="hljs-comment">//j&gt;0是为了以免-dj小于0</span><br>					A[j+dk]=A[j];<br>                 &#125;<br>                A[j+dk]=A[<span class="hljs-number">0</span>];<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>时间复杂度极为难算：约为$O(n^{1.3})$，最坏$O(n^{2})$</p>
+
+<p>ACwing版</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">qsort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a[],<span class="hljs-keyword">int</span> l,<span class="hljs-keyword">int</span> r)</span></span>&#123;<br>    <span class="hljs-keyword">if</span>(l&gt;=r)<span class="hljs-keyword">return</span> ;<br>    <span class="hljs-keyword">int</span> x=a[(l+r)&gt;&gt;<span class="hljs-number">1</span>],i=l<span class="hljs-number">-1</span>,j=r+<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span>(i&lt;j)&#123;<br>		<span class="hljs-keyword">do</span> i++;<span class="hljs-keyword">while</span>(x&gt;a[i]);<br>         <span class="hljs-keyword">do</span> j--;<span class="hljs-keyword">while</span>(x&lt;a[j]);<br>        <span class="hljs-keyword">if</span>(i&lt;j)<span class="hljs-built_in">swap</span>(a[i],a[j]);<br>    &#125;<br>    <span class="hljs-built_in">qsort</span>(a,l,j),<span class="hljs-built_in">qsort</span>(a,j+<span class="hljs-number">1</span>,r);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>时间复杂度：$O(nlogn)$</p>
 <p>稳定性：不稳定</p>
-<p>适用性：仅顺序存储</p>
 
             </div>
             <hr>
@@ -289,18 +283,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/12/05/%E4%BA%A4%E6%8D%A2%E6%8E%92%E5%BA%8F/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">交换排序</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/11/30/%E9%AB%98%E7%B2%BE%E5%BA%A6A+B/">
-                        <span class="hidden-mobile">高精度A+B</span>
+                      <a href="/2021/12/05/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/">
+                        <span class="hidden-mobile">插入排序</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -322,8 +310,8 @@
     
       <script type="text/javascript">
         var disqus_config = function() {
-          this.page.url = 'http://altriat.top/2021/12/05/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/';
-          this.page.identifier = '/2021/12/05/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/';
+          this.page.url = 'http://altriat.top/2021/12/05/%E4%BA%A4%E6%8D%A2%E6%8E%92%E5%BA%8F/';
+          this.page.identifier = '/2021/12/05/%E4%BA%A4%E6%8D%A2%E6%8E%92%E5%BA%8F/';
         };
         Fluid.utils.loadComments('#disqus_thread', function() {
           var d = document, s = d.createElement('script');
