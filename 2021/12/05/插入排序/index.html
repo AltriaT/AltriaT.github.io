@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      709 字
+      852 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      9
+      12
        分钟
     </span>
   
@@ -234,6 +234,11 @@
 <p>往往第一个元素我们当作已经有序，所以从第二个开始。</p>
 <p>这里是排为从小到大</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">InsertSort</span><span class="hljs-params">(ElemType A[],<span class="hljs-keyword">int</span> n)</span></span>&#123;<br>    <span class="hljs-keyword">int</span> i,j;<br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">2</span>;i&lt;=n;i++)&#123;<span class="hljs-comment">//第0个当哨兵，第1个已经有序了。</span><br>		<span class="hljs-keyword">if</span>(A[i]&lt;A[i<span class="hljs-number">-1</span>])&#123;<br>			A[<span class="hljs-number">0</span>]=A[i];<br>             <span class="hljs-keyword">for</span>(j=i<span class="hljs-number">-1</span>;A[<span class="hljs-number">0</span>]&lt;A[j];j--)&#123;<br>				A[j+<span class="hljs-number">1</span>]=A[j];<br>             &#125;<br>            A[j+<span class="hljs-number">1</span>]=A[<span class="hljs-number">0</span>];<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>链表版</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">sort</span><span class="hljs-params">(SqList &amp;S)</span></span>&#123;<br>	<span class="hljs-keyword">for</span>(LNode *i=S-&gt;next;i;i=i-&gt;next)&#123;<br>		<span class="hljs-keyword">if</span>((i-&gt;data) &lt; (i-&gt;pir-&gt;data))&#123;<br>			<span class="hljs-keyword">int</span> x=i-&gt;data;<br>			LNode *j;<br>			i-&gt;pir-&gt;next=i-&gt;next;<br>			<span class="hljs-keyword">if</span>(i-&gt;next)i-&gt;next-&gt;pir=i-&gt;pir;<br>			<span class="hljs-keyword">for</span>(j=i-&gt;pir; j&amp;&amp;j-&gt;data&gt;i-&gt;data ;j = j-&gt;pir);<br>			<span class="hljs-keyword">if</span>(j==<span class="hljs-literal">NULL</span>)&#123;<br>				SqList t=S;<br>				S=(SqList)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(LNode));<br>				S-&gt;data=x;<br>				S-&gt;next=t;<br>				S-&gt;pir=<span class="hljs-literal">NULL</span>;<br>				t-&gt;pir=S;<br>			&#125; <br>			<span class="hljs-keyword">else</span>&#123;<br>				SqList q=(SqList)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(LNode));<br>				q-&gt;data=x;<br>				q-&gt;next=j-&gt;next;<br>				q-&gt;pir=j;<br>				j-&gt;next-&gt;pir=q;<br>				j-&gt;next=q;<br>			&#125;<br>		&#125;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
 
 <p>考试会考排序过程的第几趟。</p>
 <p>当顺序刚好是需要的顺序，进行n-1趟，每一趟又是比较1次。所以是O(n)。</p>
