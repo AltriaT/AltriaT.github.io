@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.3k 字
+      1.4k 字
     </span>
   
 
@@ -287,11 +287,11 @@
 </li>
 <li><p>（2）第二题题目可以理解为：三次分别取 正品、正品、次品，可用<a target="_blank" rel="noopener" href="https://www.zhihu.com/search?q=%E4%B9%98%E6%B3%95%E5%85%AC%E5%BC%8F&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22article%22,%22sourceId%22:418038748%7D">乘法公式</a>和古典概型。先设 <img src="https://www.zhihu.com/equation?tex=A_i" srcset="/img/loading.gif" lazyload alt="[公式]"> ={第 i次取得次品}（乘法公式要用）。</p>
 <ol>
-<li>根据乘法公式： <img src="https://www.zhihu.com/equation?tex=%5Cbegin%7Balign%7D+P(1%E6%AD%A3%E5%93%81%EF%BC%8C2%E6%AD%A3%E5%93%81%EF%BC%8C3%E6%AC%A1%E5%93%81)=&P(%5Cbar%7BA_1%7D%5Cbar%7BA_2%7DA_3)%5C%5C+=&P(%5Cbar%7BA_1%7D)P(%5Cbar%7BA_2%7D%7C%5Cbar%7BA_1%7D)P(A_3%7C%5Cbar%7BA_2%7D%5Cbar%7BA_1%7D)%5C%5C+=&%5Cfrac%7B7%7D%7B10%7D%C2%B7%5Cfrac%7B6%7D%7B9%7D%C2%B7%5Cfrac%7B3%7D%7B8%7D=%5Cfrac%7B7%7D%7B40%7D+%5Cend%7Balign%7D" srcset="/img/loading.gif" lazyload alt="[公式]"></li>
+<li>根据乘法公式： $P=\frac {A_3^2*A_9^2}{A_10^3}=3/10$</li>
 <li>根据古典概型： <img src="https://www.zhihu.com/equation?tex=P=%5Cfrac%7B%E6%8C%89%E9%A1%BA%E5%BA%8F%E5%8F%96%E7%AC%AC%E4%B8%89%E4%B8%AA%E4%B8%BA%E6%AC%A1%E5%93%81*%E6%8C%89%E9%A1%BA%E5%BA%8F%E5%8F%96%E5%89%8D%E4%B8%A4%E4%B8%AA%5Ccolor%7Bred%7D%7B%E4%B8%BA%E6%AD%A3%E5%93%81%7D%7D%7B%E6%8C%89%E9%A1%BA%E5%BA%8F%E5%8F%96%E4%B8%89%E4%B8%AA%E6%AC%A1%E5%93%81%7D=%5Cfrac%7BA_%7B3%7D%5E%7B1%7D*%5Ccolor%7Bred%7D%7BA_%7B7%7D%5E%7B2%7D%7D%7D%7BA_%7B10%7D%5E%7B3%7D%7D=%5Cfrac%7B3*7*6%7D%7B10*9*8%7D=%5Cfrac%7B7%7D%7B40%7D" srcset="/img/loading.gif" lazyload alt="[公式]">很显然，第二题的概率比第一题小，之所以会发生这种情况，是由于第二题的情况比第一题更严苛，从原来 *<strong>不知道其他次取法*</strong> 变为了 *<strong>我知道前两次取得是正品*</strong> 。</li>
 </ol>
 <p>（3）第三题就是典型<strong>条件概率</strong></p>
-<p><img src="https://www.zhihu.com/equation?tex=%5Cbegin%7Balign%7D+&P(%E5%89%8D%E4%B8%A4%E6%AC%A1%E5%8F%96%E6%AD%A3%E5%93%81%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%8F%96%E6%AC%A1%E5%93%81)=P(A_3%7C%5Cbar%7BA_2%7D%5Cbar%7BA_1%7D)=%5Cfrac%7B3%7D%7B8%7D+%5Cend%7Balign%7D" srcset="/img/loading.gif" lazyload alt="[公式]"></p>
+<p>​        $P(A_3|\bar{A_2}\bar{A_1})=3/8$</p>
 <blockquote>
 <p>这题的条件概率就是典型的开了***“上帝视角”***，由于我们知道其他次实验更多的信息，导致我们对第三次取次品的把握更大了，表现在 <img src="https://www.zhihu.com/equation?tex=%5Cfrac%7B3%7D%7B8%7D%3E%5Cfrac%7B3%7D%7B10%7D" srcset="/img/loading.gif" lazyload alt="[公式]"></p>
 </blockquote>
@@ -305,9 +305,9 @@
 <h3 id="贝叶斯公式"><a href="#贝叶斯公式" class="headerlink" title="贝叶斯公式"></a>贝叶斯公式</h3><p>由果推因</p>
 <p>$P(B_i|A)=\frac {P(B_i)P(A|B_i)} {\sum_{j=1}^n P(B_j)P(A|B_j)}$</p>
 <p>他就是在某个事件中某一块划分的概率。</p>
-<p>image<img src="img/%E9%AB%98%E6%95%B0/%E6%97%A0%E6%A0%87%E9%A2%98.png" srcset="/img/loading.gif" lazyload alt="图"></p>
+<p>image[图]!(/img/高数/无标题.png)</p>
 <p><strong>梨米特的例题<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1D741147G5?p=11">【梨米特】全网最适合大学生学习的《概率论与数理统计》课，概率统计知识点全解析（适合大一学习、考研复习基础）_哔哩哔哩_bilibili</a></strong></p>
-<p>image<img src="img/%E9%AB%98%E6%95%B0/%E5%85%A8%E8%B4%9D%E4%BE%8B%E9%A2%98.png" srcset="/img/loading.gif" lazyload alt="例"></p>
+<p>image[例]!(/img/高数/全贝例题.png)</p>
 <h3 id="独立性"><a href="#独立性" class="headerlink" title="独立性"></a>独立性</h3><p>若事件A与B独立，则满足P(AB)=P(A)P(B)</p>
 <p>也可得出P(A|B)=P(A)</p>
 
