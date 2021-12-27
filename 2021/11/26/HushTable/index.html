@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.5k 字
+      1.7k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      19
+      22
        分钟
     </span>
   
@@ -304,6 +304,15 @@
 <p>衡量是否太满的值是填装因子，可以自己调节。</p>
 <p>插入时可用线性或平方探测。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Rehush</span><span class="hljs-params">(hushtable &amp;H,<span class="hljs-keyword">int</span> x)</span></span>&#123;<br>	 <span class="hljs-keyword">int</span> N=H.TableSize;<br>	 <span class="hljs-keyword">double</span> a=(H.num*<span class="hljs-number">1.0</span>)/H.TableSize;<br>	 <span class="hljs-comment">//填装因子判定 </span><br>	 <span class="hljs-keyword">if</span>(a&gt;<span class="hljs-number">0.5</span>)&#123;<br>	 	<span class="hljs-keyword">int</span> new_TableSize=<span class="hljs-built_in">Find_Prime_Number</span>(H.TableSize);<br>	 	hushtable newH;<br>	 	<span class="hljs-built_in">InitHushTable</span>(newH,new_TableSize);<br>	 	<span class="hljs-comment">//导入新空间 </span><br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;H.TableSize;i++)&#123;<br>			<span class="hljs-keyword">if</span>(H.flag[i])<span class="hljs-built_in">Insert</span>(newH,H.eles[i]);<br>		&#125;<br>		<span class="hljs-comment">//释放就的空间，将新的copy到旧的名字。 </span><br>		<span class="hljs-built_in">free</span>(H.eles);<br>		<span class="hljs-built_in">free</span>(H.flag);<br>		H.eles=newH.eles;<br>		H.flag=newH.flag;<br>		H.num=newH.num;<br>		H.TableSize=newH.TableSize;<br>	 &#125;<br>	 <span class="hljs-built_in">Insert</span>(H,x);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="字符串哈希"><a href="#字符串哈希" class="headerlink" title="字符串哈希"></a>字符串哈希</h2><p>处理字符串的哈希方式，有比kmp更强大的查重效率</p>
+<p>思想:</p>
+<ol>
+<li>哈希</li>
+<li>前缀和</li>
+<li>类比十进制求各个位数</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ULL;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">1000010</span>;<br><span class="hljs-comment">//h[]是前缀所有的哈希值，p[]是P的次方</span><br>ULL h[<span class="hljs-number">100010</span>],p[<span class="hljs-number">100010</span>],P=<span class="hljs-number">131</span>;<br><span class="hljs-comment">//求哈希值</span><br><span class="hljs-function">ULL <span class="hljs-title">get</span><span class="hljs-params">(<span class="hljs-keyword">int</span> l,<span class="hljs-keyword">int</span> r)</span></span>&#123;<br>	<span class="hljs-keyword">return</span> h[r]-h[l<span class="hljs-number">-1</span>]*p[r-l+<span class="hljs-number">1</span>];<br>&#125;<br><span class="hljs-keyword">char</span> str[<span class="hljs-number">100010</span>];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">int</span> n,m;<br>    p[<span class="hljs-number">0</span>]=<span class="hljs-number">1</span>;<span class="hljs-comment">//p的0次方是1</span><br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d%s&quot;</span>,&amp;n,&amp;m,str+<span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>		p[i]=p[i<span class="hljs-number">-1</span>]*P;<br>        h[i]=h[i<span class="hljs-number">-1</span>]*P+str[i];<br>    &#125;<br>	<span class="hljs-keyword">while</span>(m--)&#123;<br>		<span class="hljs-keyword">int</span> l1,l2,r1,r2;<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d%d%d&quot;</span>,&amp;l1,&amp;r1,&amp;l2,&amp;r2);<br>        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">get</span>(l1,r1)==<span class="hljs-built_in">get</span>(l2,r2))<span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;Yes&quot;</span>);<br>        <span class="hljs-keyword">else</span> <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;No&quot;</span>);<br>    &#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-comment">//技巧是unsigned long long 可以自主取模2^64</span><br></code></pre></td></tr></table></figure>
 
 
             </div>
