@@ -182,13 +182,119 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/12/26/%E2%80%9C%E7%A5%9E%E5%86%9C%E2%80%9D/" target="_self">
+        <a href="/2021/12/29/%E5%89%8D%E7%BC%80%E5%92%8C%E3%81%A8%E5%B7%AE%E5%88%86/" target="_self">
+          前缀和と差分
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/12/29/%E5%89%8D%E7%BC%80%E5%92%8C%E3%81%A8%E5%B7%AE%E5%88%86/" target="_self">
+          
+          
+            
+          
+          前缀和就是数列前n项和
+公式$S_n=S_{n-1}+a_n$
+12345678910#include&lt;iostream&gt;int a[100010];int s[100010];int main()&#123;    int n;    for(int i=1;i&lt;=n;i++)&#123;		cin&gt;&gt;a[i];        s[i]=s[i-1]+a[i];//
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-12-29 08:03" pubdate>
+              2021-12-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/12/28/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" target="_self">
+          二分查找
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/12/28/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" target="_self">
+          
+          
+            
+          
+          二分查找适用于有序的线性表
+有三种模板
+判断是否存在12345678910int find(SqList L,int target)&#123;	int l=0,r=L.length-1;    while(l&lt;r)&#123;        int mid=l+r&gt;&gt;1;		if(L.ele[mid]==target)return mid;        else if(L.e
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-12-28 16:56" pubdate>
+              2021-12-28
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+            
+              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%9F%A5%E6%89%BE/">查找</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/12/26/%E7%A5%9E%E5%86%9C/" target="_self">
           “神农”
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/12/26/%E2%80%9C%E7%A5%9E%E5%86%9C%E2%80%9D/" target="_self">
+        <a href="/2021/12/26/%E7%A5%9E%E5%86%9C/" target="_self">
           
           
             
@@ -614,116 +720,6 @@
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/%E9%93%BE%E8%A1%A8/">链表</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/11/26/HushTable/" target="_self">
-          HushTable
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/11/26/HushTable/" target="_self">
-          
-          
-            
-          
-          哈希表哈希表是用来做什么的？​    以平均常数时间对关键字进行查找、删除、插入。
-​    hash表是为了以最快的时间查找到内容，同时保证空间利用的高效，可以说是和珅最爱了。
-​    就好比一个3个字母的英语单词我们可以把它看成一个三维空间的点，然后我们把他表示成一个数的方式是从（0，0，0）标记成0，（25,25,25）标记成$26\times 26\times 26$。然后中间的某一单词
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-26 20:06" pubdate>
-              2021-11-26
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-            
-              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%9F%A5%E6%89%BE/">查找</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/data-structure/">data structure</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/11/25/graph2/" target="_self">
-          graph2
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/11/25/graph2/" target="_self">
-          
-          
-            
-          
-          图2图的应用最小生成树​    生成树：一个连通图的生成树是一个极小的连通子图，它包含图中全部的n个顶点，但只有构成一棵    树的n-1条边。
-​    最小生成树：就是原图中边的权值的和最小的生成树 ，所谓最小是指边的权值之和小于或者等于其它生成树的边的权值之和。
-
-prim
-Prim算法针对的是连通网（连通带权图）的最小生成树。每次都要从不在集合中选这一个距离集合最近的点，直到所有节点都被选
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-25 07:38" pubdate>
-              2021-11-25
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-            
-              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%9B%BE%E8%AE%BA/">图论</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/data-structure/">data structure</a>
             
           </div>
         
