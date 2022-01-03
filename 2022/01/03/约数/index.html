@@ -18,7 +18,7 @@
   <meta name="author" content="Ding">
   <meta name="keywords" content="">
   
-  <title>前缀和と差分 - AltriaT</title>
+  <title>约数 - AltriaT</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -175,7 +175,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="前缀和と差分">
+            <span class="h2" id="subtitle" title="约数">
               
             </span>
 
@@ -185,8 +185,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-12-29 08:03" pubdate>
-        2021年12月29日 早上
+      <time datetime="2022-01-03 15:36" pubdate>
+        2022年1月3日 下午
       </time>
     </span>
   
@@ -197,7 +197,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      391 字
+      499 字
     </span>
   
 
@@ -207,7 +207,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      8
        分钟
     </span>
   
@@ -237,27 +237,32 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">前缀和と差分</h1>
+            <h1 style="display: none">约数</h1>
             
             <div class="markdown-body">
-              <h1 id="前缀和"><a href="#前缀和" class="headerlink" title="前缀和"></a>前缀和</h1><p>就是数列前n项和</p>
-<p>公式$S_n=S_{n-1}+a_n$</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">int</span> a[<span class="hljs-number">100010</span>];<br><span class="hljs-keyword">int</span> s[<span class="hljs-number">100010</span>];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">int</span> n;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>		cin&gt;&gt;a[i];<br>        s[i]=s[i<span class="hljs-number">-1</span>]+a[i];<span class="hljs-comment">//s[0]=0;</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+              <h1 id="约数"><a href="#约数" class="headerlink" title="约数"></a>约数</h1><p>约数，又称<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%9B%A0%E6%95%B0/9539111">因数</a>。<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%95%B4%E6%95%B0/1293937">整数</a>a除以整数b(b≠0) 除得的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%95%86/3820976">商</a>正好是整数而没有<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BD%99%E6%95%B0/6180737">余数</a>，我们就说a能被b整除，或b能整除a。a称为b的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%80%8D%E6%95%B0/7827981">倍数</a>，b称为a的约数。</p>
+<h2 id="求约数"><a href="#求约数" class="headerlink" title="求约数"></a>求约数</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">get_yue</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span></span><br><span class="hljs-function"></span>&#123;<br>    vector&lt;<span class="hljs-keyword">int</span>&gt; res;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n/i;i++)<br>    &#123;<br>        <span class="hljs-keyword">if</span>(n%i==<span class="hljs-number">0</span>)&#123;<br>            res.<span class="hljs-built_in">push_back</span>(i);<br>            <span class="hljs-keyword">if</span>(n/i!=i)res.<span class="hljs-built_in">push_back</span>(n/i);<span class="hljs-comment">//在sqrt(n)左右对称，但不要重复</span><br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">//sort(res.begin(),res.end());</span><br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>可以将求某一区间的和的时间复杂度变为O（1）</p>
-<p>求[a,b]和的公式：s=s[b]-a[a-1]</p>
-<p>他还有二维形式前缀和</p>
-<p>公式：$s[i][j]=s[i-1][j]+s[i][j-1]-s[i-1][j-1]+a[i][j]$</p>
-<p>求$（x_1,y_1），（x_2,y_2）$矩形内的和</p>
-<p>公式：$s=s[x_2][y_2]-s[x_1-1][y_2]-s[x_2][y_1-1]+s[x_1-1][y_1-1]$</p>
-<h1 id="差分"><a href="#差分" class="headerlink" title="差分"></a>差分</h1><p>数列有前n项和求$a_n$</p>
-<p>公式：a[n]=s[n]-s[n-1]</p>
-<p>它可以直接将某一区间[a,b]加减c用O（1）</p>
-<p>$原理是将a[a]+=c,a[b+1]-=c,这样既保证这个区间s_n是加上c了，而且[b, +\infty]还是不变$</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">int</span> a[<span class="hljs-number">100010</span>];<br><span class="hljs-keyword">int</span> s[<span class="hljs-number">100010</span>];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">int</span> n,m;<br>    cin&gt;&gt;n&gt;&gt;m;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>		cin&gt;&gt;s[i];<br>        a[i]=s[i]-s[i<span class="hljs-number">-1</span>];<br>    &#125;<br>    <span class="hljs-keyword">while</span>(m--)&#123;<br>		<span class="hljs-keyword">int</span> l,r,c;<br>        cin&gt;&gt;l&gt;&gt;r&gt;&gt;c;<br>        a[l]+=c;<br>        a[r+<span class="hljs-number">1</span>]-=c;<br>    &#125;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>        s[i]=s[i<span class="hljs-number">-1</span>]+a[i];<br>        cout&lt;&lt;s[i]&lt;&lt;<span class="hljs-string">&#x27; &#x27;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>他也有二维模式</p>
-<p>$公式：a[i][j]=s[i][j]-s[i-1][j]-s[i][j-1]+s[i-1][j-1]+a[i][j]$<br>$$<br>某一矩形内[x_1,y_1],[x_2,y_2]的值加减c公式:<br>a[x_1][y_1]+=c,a[x_1][y_2+1]-=c,a[x_2+1][y_1]-=c,a[x_2+1][y_2+1]+=c<br>$$</p>
+
+<h2 id="两个性质"><a href="#两个性质" class="headerlink" title="两个性质"></a>两个性质</h2><ol>
+<li><p>求所有约数的个数</p>
+<p>公式：$(a_1+1)(a_2+1)…(a_n+1), a_i是对应质因数出现的次数$</p>
+<p>证明：已知质因数及其个数，n是被分解的数，m是因数</p>
+<p>$n=p_1^{a_1} \times p_2^{a_2} \times …\times p_n^{a_n}$</p>
+<p>$m=p_1^{b_1} \times p_2^{b_2} \times …\times p_n^{b_n}$</p>
+<p>b在0~a之间有a+1种选法</p>
+<p>由乘法定理得：全部约数个数为$(a_1+1)(a_2+1)…(a_n+1)$</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-comment">//这里用哈希表存储质因数</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;unordered_map&gt;</span></span><br><span class="hljs-keyword">int</span> mod=(<span class="hljs-number">1e9</span>+<span class="hljs-number">7</span>)<br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    unordered_map&lt;<span class="hljs-keyword">int</span>,<span class="hljs-keyword">int</span>&gt; primes;<br>    <span class="hljs-keyword">int</span> n;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i&lt;=n/i;i++)<br>    &#123;<br>        <span class="hljs-keyword">while</span>(n%i==<span class="hljs-number">0</span>)<br>        &#123;<br>            primes[i]++;<br>            n/=i;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(n&gt;i)primes[n]++;<br>    <span class="hljs-keyword">int</span> res=<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> prime:primes)res=res*(prime.second+<span class="hljs-number">1</span>)%mod;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>,res);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li><p>求所有约数的和</p>
+<p>由1证明,易知全部和为其质因数出实现次数之和在相乘$(p_1^0+p_1^1+…+p_1^{c1})∗…∗(p_k^0+p_k^1+…+p_k^{c_k})$</p>
+</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;vector&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;unordered_map&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">int</span> n;<br>    unordered_map&lt;<span class="hljs-keyword">int</span>,<span class="hljs-keyword">int</span>&gt; primes;<br>    cin&gt;&gt;n;<br>    <span class="hljs-keyword">while</span>(n--)<br>    &#123;<br>        <span class="hljs-keyword">int</span> m;<br>        cin&gt;&gt;m;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i&lt;=m/i;i++)<br>        &#123;<br>            <span class="hljs-keyword">while</span>(m%i==<span class="hljs-number">0</span>)<br>            &#123;<br><br>                m/=i;<br>                primes[i]++;<br><br>            &#125;<br>        &#125;<br><br>        <span class="hljs-keyword">if</span>(m&gt;<span class="hljs-number">1</span>)primes[m]++;<br><br>    &#125;<br><br>    <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> res=<span class="hljs-number">1</span>;<br><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> prime:primes)&#123;<br>        <span class="hljs-keyword">int</span> p=prime.first,a=prime.second;<br>        <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> t=<span class="hljs-number">1</span>;<span class="hljs-comment">//</span><br>        <span class="hljs-keyword">while</span>(a--)t=(t*p+<span class="hljs-number">1</span>)%(<span class="hljs-keyword">int</span>)(<span class="hljs-number">1e9</span>+<span class="hljs-number">7</span>);<span class="hljs-comment">//秦九韶求和</span><br>        res=res*(t)%(<span class="hljs-keyword">int</span>)(<span class="hljs-number">1e9</span>+<span class="hljs-number">7</span>);<span class="hljs-comment">//</span><br>    &#125;<br><br>    cout&lt;&lt;res&lt;&lt;endl;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="求解最大公约数"><a href="#求解最大公约数" class="headerlink" title="求解最大公约数"></a>求解最大公约数</h2><p>辗转相除法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">gcd</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a,<span class="hljs-keyword">int</span> b)</span></span>&#123;<br>    <span class="hljs-keyword">return</span> b? <span class="hljs-built_in">gcd</span>(b,a%b):a;<br>&#125;<br></code></pre></td></tr></table></figure>
+
 
             </div>
             <hr>
@@ -292,18 +297,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/12/30/%E5%8F%8C%E6%8C%87%E9%92%88/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">双指针</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/12/28/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">
-                        <span class="hidden-mobile">二分查找</span>
+                      <a href="/2022/01/03/%E8%B4%A8%E6%95%B0/">
+                        <span class="hidden-mobile">质数</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -325,8 +324,8 @@
     
       <script type="text/javascript">
         var disqus_config = function() {
-          this.page.url = 'http://altriat.top/2021/12/29/%E5%89%8D%E7%BC%80%E5%92%8C%E3%81%A8%E5%B7%AE%E5%88%86/';
-          this.page.identifier = '/2021/12/29/%E5%89%8D%E7%BC%80%E5%92%8C%E3%81%A8%E5%B7%AE%E5%88%86/';
+          this.page.url = 'http://altriat.top/2022/01/03/%E7%BA%A6%E6%95%B0/';
+          this.page.identifier = '/2022/01/03/%E7%BA%A6%E6%95%B0/';
         };
         Fluid.utils.loadComments('#disqus_thread', function() {
           var d = document, s = d.createElement('script');

@@ -18,7 +18,7 @@
   <meta name="author" content="Ding">
   <meta name="keywords" content="">
   
-  <title>前缀和と差分 - AltriaT</title>
+  <title>质数 - AltriaT</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -175,7 +175,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="前缀和と差分">
+            <span class="h2" id="subtitle" title="质数">
               
             </span>
 
@@ -185,8 +185,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-12-29 08:03" pubdate>
-        2021年12月29日 早上
+      <time datetime="2022-01-03 15:12" pubdate>
+        2022年1月3日 下午
       </time>
     </span>
   
@@ -197,7 +197,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      391 字
+      417 字
     </span>
   
 
@@ -237,27 +237,24 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">前缀和と差分</h1>
+            <h1 style="display: none">质数</h1>
             
             <div class="markdown-body">
-              <h1 id="前缀和"><a href="#前缀和" class="headerlink" title="前缀和"></a>前缀和</h1><p>就是数列前n项和</p>
-<p>公式$S_n=S_{n-1}+a_n$</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">int</span> a[<span class="hljs-number">100010</span>];<br><span class="hljs-keyword">int</span> s[<span class="hljs-number">100010</span>];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">int</span> n;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>		cin&gt;&gt;a[i];<br>        s[i]=s[i<span class="hljs-number">-1</span>]+a[i];<span class="hljs-comment">//s[0]=0;</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+              <h1 id="质数"><a href="#质数" class="headerlink" title="质数"></a>质数</h1><p>质数：质数是指在大于1的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%87%AA%E7%84%B6%E6%95%B0/385394">自然数</a>中，除了1和它本身以外不再有其他<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%9B%A0%E6%95%B0/9539111">因数</a>的自然数。</p>
+<h2 id="判断质数"><a href="#判断质数" class="headerlink" title="判断质数"></a>判断质数</h2><p>用定义</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">is_prime</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">if</span>(x==<span class="hljs-number">1</span>)<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i&lt;=x;i++)<br>    &#123;<br>        <span class="hljs-keyword">if</span>(x%i==<span class="hljs-number">0</span>)<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>可以将求某一区间的和的时间复杂度变为O（1）</p>
-<p>求[a,b]和的公式：s=s[b]-a[a-1]</p>
-<p>他还有二维形式前缀和</p>
-<p>公式：$s[i][j]=s[i-1][j]+s[i][j-1]-s[i-1][j-1]+a[i][j]$</p>
-<p>求$（x_1,y_1），（x_2,y_2）$矩形内的和</p>
-<p>公式：$s=s[x_2][y_2]-s[x_1-1][y_2]-s[x_2][y_1-1]+s[x_1-1][y_1-1]$</p>
-<h1 id="差分"><a href="#差分" class="headerlink" title="差分"></a>差分</h1><p>数列有前n项和求$a_n$</p>
-<p>公式：a[n]=s[n]-s[n-1]</p>
-<p>它可以直接将某一区间[a,b]加减c用O（1）</p>
-<p>$原理是将a[a]+=c,a[b+1]-=c,这样既保证这个区间s_n是加上c了，而且[b, +\infty]还是不变$</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">int</span> a[<span class="hljs-number">100010</span>];<br><span class="hljs-keyword">int</span> s[<span class="hljs-number">100010</span>];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">int</span> n,m;<br>    cin&gt;&gt;n&gt;&gt;m;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>		cin&gt;&gt;s[i];<br>        a[i]=s[i]-s[i<span class="hljs-number">-1</span>];<br>    &#125;<br>    <span class="hljs-keyword">while</span>(m--)&#123;<br>		<span class="hljs-keyword">int</span> l,r,c;<br>        cin&gt;&gt;l&gt;&gt;r&gt;&gt;c;<br>        a[l]+=c;<br>        a[r+<span class="hljs-number">1</span>]-=c;<br>    &#125;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>        s[i]=s[i<span class="hljs-number">-1</span>]+a[i];<br>        cout&lt;&lt;s[i]&lt;&lt;<span class="hljs-string">&#x27; &#x27;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">is_prime</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-keyword">if</span>(x==<span class="hljs-number">1</span>)<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i&lt;=x/i;i++)<span class="hljs-comment">//没有可以大于sqrt(x)的i</span><br>    &#123;<br>        <span class="hljs-keyword">if</span>(x%i==<span class="hljs-number">0</span>)<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>他也有二维模式</p>
-<p>$公式：a[i][j]=s[i][j]-s[i-1][j]-s[i][j-1]+s[i-1][j-1]+a[i][j]$<br>$$<br>某一矩形内[x_1,y_1],[x_2,y_2]的值加减c公式:<br>a[x_1][y_1]+=c,a[x_1][y_2+1]-=c,a[x_2+1][y_1]-=c,a[x_2+1][y_2+1]+=c<br>$$</p>
+<p>原因：原因：素数是因子为1和本身， 如果数c不是素数，则还有其他因子，其中的因子，假如为a,b.其中必有一个大于sqrt(c) ，一个小于sqrt(c) 。所以m必有一个小于或等于其平方根的因数，那么验证素数时就只需要验证到其平方根就可以了。即一个合数一定含有小于它平方根的质因子。</p>
+<h2 id="分解质因数"><a href="#分解质因数" class="headerlink" title="分解质因数"></a>分解质因数</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">int</span> n;<br>    cin&gt;&gt;n;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i&lt;=n/i;i++)<br>    &#123;<br>        <span class="hljs-keyword">while</span>(n%i==<span class="hljs-number">0</span>)<br>        &#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>,i);<br>            n/=i;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(n&gt;<span class="hljs-number">1</span>)<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>,n);<span class="hljs-comment">//假设有因子i&gt;sqrt(n),即n/i==0,那么它应当在i&lt;sqrt(n)时就会被发现——因为他对应的因子n/i&lt;sqrt(n)唯一的落网之鱼就是其本身就是质数，如37</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="筛质数"><a href="#筛质数" class="headerlink" title="筛质数"></a>筛质数</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;vector&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">int</span> n;<br><span class="hljs-keyword">int</span> pir[<span class="hljs-number">1000010</span>];<br><span class="hljs-keyword">int</span> st[<span class="hljs-number">1000010</span>];<br><span class="hljs-keyword">int</span> cnt=<span class="hljs-number">0</span>;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">num</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span></span>&#123;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i&lt;=x;i++)&#123;<br>        <span class="hljs-keyword">if</span>(!st[i])pir[cnt++]=i;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;pir[j]&lt;=x/i;j++)&#123;<br>            st[pir[j]*i]=<span class="hljs-literal">true</span>;<br>            <span class="hljs-keyword">if</span>(i%pir[j]==<span class="hljs-number">0</span>)<span class="hljs-keyword">break</span>;<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
 
             </div>
             <hr>
@@ -292,9 +289,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/12/30/%E5%8F%8C%E6%8C%87%E9%92%88/">
+                      <a href="/2022/01/03/%E7%BA%A6%E6%95%B0/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">双指针</span>
+                        <span class="hidden-mobile">约数</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -302,8 +299,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/12/28/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">
-                        <span class="hidden-mobile">二分查找</span>
+                      <a href="/2021/12/30/%E5%8F%8C%E6%8C%87%E9%92%88/">
+                        <span class="hidden-mobile">双指针</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -325,8 +322,8 @@
     
       <script type="text/javascript">
         var disqus_config = function() {
-          this.page.url = 'http://altriat.top/2021/12/29/%E5%89%8D%E7%BC%80%E5%92%8C%E3%81%A8%E5%B7%AE%E5%88%86/';
-          this.page.identifier = '/2021/12/29/%E5%89%8D%E7%BC%80%E5%92%8C%E3%81%A8%E5%B7%AE%E5%88%86/';
+          this.page.url = 'http://altriat.top/2022/01/03/%E8%B4%A8%E6%95%B0/';
+          this.page.identifier = '/2022/01/03/%E8%B4%A8%E6%95%B0/';
         };
         Fluid.utils.loadComments('#disqus_thread', function() {
           var d = document, s = d.createElement('script');
