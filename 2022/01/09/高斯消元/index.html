@@ -18,7 +18,7 @@
   <meta name="author" content="Ding">
   <meta name="keywords" content="">
   
-  <title>约数 - AltriaT</title>
+  <title>高斯消元 - AltriaT</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -175,7 +175,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="约数">
+            <span class="h2" id="subtitle" title="高斯消元">
               
             </span>
 
@@ -185,8 +185,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-01-03 15:36" pubdate>
-        2022年1月3日 下午
+      <time datetime="2022-01-09 20:23" pubdate>
+        2022年1月9日 晚上
       </time>
     </span>
   
@@ -197,7 +197,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      499 字
+      444 字
     </span>
   
 
@@ -207,7 +207,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8
+      6
        分钟
     </span>
   
@@ -237,31 +237,27 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">约数</h1>
+            <h1 style="display: none">高斯消元</h1>
             
             <div class="markdown-body">
-              <h1 id="约数"><a href="#约数" class="headerlink" title="约数"></a>约数</h1><p>约数，又称<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%9B%A0%E6%95%B0/9539111">因数</a>。<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%95%B4%E6%95%B0/1293937">整数</a>a除以整数b(b≠0) 除得的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%95%86/3820976">商</a>正好是整数而没有<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BD%99%E6%95%B0/6180737">余数</a>，我们就说a能被b整除，或b能整除a。a称为b的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%80%8D%E6%95%B0/7827981">倍数</a>，b称为a的约数。</p>
-<h2 id="求约数"><a href="#求约数" class="headerlink" title="求约数"></a>求约数</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">get_yue</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span></span><br><span class="hljs-function"></span>&#123;<br>    vector&lt;<span class="hljs-keyword">int</span>&gt; res;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n/i;i++)<br>    &#123;<br>        <span class="hljs-keyword">if</span>(n%i==<span class="hljs-number">0</span>)&#123;<br>            res.<span class="hljs-built_in">push_back</span>(i);<br>            <span class="hljs-keyword">if</span>(n/i!=i)res.<span class="hljs-built_in">push_back</span>(n/i);<span class="hljs-comment">//在sqrt(n)左右对称，但不要重复</span><br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">//sort(res.begin(),res.end());</span><br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
-
-<h2 id="两个性质"><a href="#两个性质" class="headerlink" title="两个性质"></a>两个性质</h2><ol>
-<li><p>求所有约数的个数</p>
-<p>公式：$(a_1+1)(a_2+1)…(a_n+1), a_i是对应质因数出现的次数$</p>
-<p>证明：已知质因数及其个数，n是被分解的数，m是因数</p>
-<p>$n=p_1^{a_1} \times p_2^{a_2} \times …\times p_n^{a_n}$</p>
-<p>$m=p_1^{b_1} \times p_2^{b_2} \times …\times p_n^{b_n}$</p>
-<p>b在0~a之间有a+1种选法</p>
-<p>由乘法定理得：全部约数个数为$(a_1+1)(a_2+1)…(a_n+1)$</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-comment">//这里用哈希表存储质因数</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;unordered_map&gt;</span></span><br><span class="hljs-keyword">int</span> mod=(<span class="hljs-number">1e9</span>+<span class="hljs-number">7</span>)<br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    unordered_map&lt;<span class="hljs-keyword">int</span>,<span class="hljs-keyword">int</span>&gt; primes;<br>    <span class="hljs-keyword">int</span> n;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i&lt;=n/i;i++)<br>    &#123;<br>        <span class="hljs-keyword">while</span>(n%i==<span class="hljs-number">0</span>)<br>        &#123;<br>            primes[i]++;<br>            n/=i;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(n&gt;i)primes[n]++;<br>    <span class="hljs-keyword">int</span> res=<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> prime:primes)res=res*(prime.second+<span class="hljs-number">1</span>)%mod;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>,res);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure></li>
-<li><p>求所有约数的和</p>
-<p>由1证明,易知全部和为其质因数出实现次数之和在相乘$(p_1^0+p_1^1+…+p_1^{c1})∗…∗(p_k^0+p_k^1+…+p_k^{c_k})$</p>
-</li>
+              <h1 id="高斯消元解线性方程组"><a href="#高斯消元解线性方程组" class="headerlink" title="高斯消元解线性方程组"></a>高斯消元解线性方程组</h1><h2 id="线性代数"><a href="#线性代数" class="headerlink" title="线性代数"></a>线性代数</h2><p>初等行变换（不影响方程组的解）</p>
+<ol>
+<li>把某一行乘一个非0的数 (方程的两边同时乘上一个非0数不改变方程的解）</li>
+<li>交换某两行</li>
+<li>把某行的若干倍加到另一行上去（把一个方程的若干倍加到另一方程上去）</li>
 </ol>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;vector&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;unordered_map&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">int</span> n;<br>    unordered_map&lt;<span class="hljs-keyword">int</span>,<span class="hljs-keyword">int</span>&gt; primes;<br>    cin&gt;&gt;n;<br>    <span class="hljs-keyword">while</span>(n--)<br>    &#123;<br>        <span class="hljs-keyword">int</span> m;<br>        cin&gt;&gt;m;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i&lt;=m/i;i++)<br>        &#123;<br>            <span class="hljs-keyword">while</span>(m%i==<span class="hljs-number">0</span>)<br>            &#123;<br><br>                m/=i;<br>                primes[i]++;<br><br>            &#125;<br>        &#125;<br><br>        <span class="hljs-keyword">if</span>(m&gt;<span class="hljs-number">1</span>)primes[m]++;<br><br>    &#125;<br><br>    <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> res=<span class="hljs-number">1</span>;<br><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> prime:primes)&#123;<br>        <span class="hljs-keyword">int</span> p=prime.first,a=prime.second;<br>        <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> t=<span class="hljs-number">1</span>;<span class="hljs-comment">//</span><br>        <span class="hljs-keyword">while</span>(a--)t=(t*p+<span class="hljs-number">1</span>)%(<span class="hljs-keyword">int</span>)(<span class="hljs-number">1e9</span>+<span class="hljs-number">7</span>);<span class="hljs-comment">//秦九韶求和</span><br>        res=res*(t)%(<span class="hljs-keyword">int</span>)(<span class="hljs-number">1e9</span>+<span class="hljs-number">7</span>);<span class="hljs-comment">//</span><br>    &#125;<br><br>    cout&lt;&lt;res&lt;&lt;endl;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h2 id="高斯消元"><a href="#高斯消元" class="headerlink" title="高斯消元"></a>高斯消元</h2><ol>
+<li>找到当前列的绝对值的最大一行</li>
+<li>将该行换到相对最上面</li>
+<li>将改行的第一个数变为1</li>
+<li>将下面所有当前列的数变为0</li>
+<li>重复1234</li>
+<li>将上面的列的数变为0</li>
+<li>重复6</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cmath&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;algorithm&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">110</span>;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> esp=<span class="hljs-number">1e-8</span>;<br><span class="hljs-keyword">int</span> n;<br><span class="hljs-keyword">double</span> a[N][N];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">gass</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">int</span> r,c;<br>    <span class="hljs-keyword">for</span>(c=<span class="hljs-number">0</span>,r=<span class="hljs-number">0</span>;c&lt;n;c++)<br>    &#123;<br>        <span class="hljs-keyword">int</span> t=r;<br>        <span class="hljs-comment">//1找最大</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=r;i&lt;n;i++)<br>            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">fabs</span>(a[i][c])&gt;<span class="hljs-built_in">fabs</span>(a[t][c]))t=i;<br>        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">fabs</span>(a[t][c])&lt;esp)<span class="hljs-keyword">continue</span>;<br>        <span class="hljs-comment">//2交换</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=c;i&lt;=n;i++)<span class="hljs-built_in">swap</span>(a[r][i],a[t][i]);<br>        <span class="hljs-comment">//3归一</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=n;i&gt;c;i++)a[r][i]/=a[r][c];<br>        <span class="hljs-comment">//4相减</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=r+<span class="hljs-number">1</span>;i&lt;n;i++)<br>            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">fabs</span>(a[i][c])&gt;esp)&#123;<br>                <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=n;j&gt;=c;j--)<br>                &#123;<br>                    a[i][j]-=a[r][j]*a[i][c];<br>                &#125;<br>            &#125;<br>        r++;<br>    &#125;<br>    <span class="hljs-comment">//方程数小于未知量数</span><br>    <span class="hljs-keyword">if</span>(r&lt;n)<br>    &#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=r;i&lt;n;i++)<br>        &#123;<br>            <span class="hljs-keyword">if</span>(a[i][n]&gt;esp)<span class="hljs-keyword">return</span> <span class="hljs-number">2</span>;<span class="hljs-comment">//矛盾无解</span><br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<span class="hljs-comment">//不矛盾由无数解</span><br>    &#125;<br>    <span class="hljs-comment">//6</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=n<span class="hljs-number">-1</span>;i&gt;=<span class="hljs-number">0</span>;i--)<span class="hljs-comment">//从最后一行开始到第一行</span><br>    &#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=i+<span class="hljs-number">1</span>;j&lt;=n;j++)<span class="hljs-comment">//查看1后面有哪些系数应消除</span><br>        &#123;<br>            a[i][n]-=a[i][j]*a[j][n];<span class="hljs-comment">//a[i][j]是应消除的系数</span><br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">//有唯一解返回0</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h2 id="求解最大公约数"><a href="#求解最大公约数" class="headerlink" title="求解最大公约数"></a>求解最大公约数</h2><p>辗转相除法</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">gcd</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a,<span class="hljs-keyword">int</span> b)</span></span>&#123;<br>    <span class="hljs-keyword">return</span> b? <span class="hljs-built_in">gcd</span>(b,a%b):a;<br>&#125;<br></code></pre></td></tr></table></figure>
+
 
 
             </div>
@@ -297,18 +293,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/01/09/%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">高斯消元</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/01/03/%E8%B4%A8%E6%95%B0/">
-                        <span class="hidden-mobile">质数</span>
+                      <a href="/2022/01/03/%E7%BA%A6%E6%95%B0/">
+                        <span class="hidden-mobile">约数</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -330,8 +320,8 @@
     
       <script type="text/javascript">
         var disqus_config = function() {
-          this.page.url = 'http://altriat.top/2022/01/03/%E7%BA%A6%E6%95%B0/';
-          this.page.identifier = '/2022/01/03/%E7%BA%A6%E6%95%B0/';
+          this.page.url = 'http://altriat.top/2022/01/09/%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83/';
+          this.page.identifier = '/2022/01/09/%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83/';
         };
         Fluid.utils.loadComments('#disqus_thread', function() {
           var d = document, s = d.createElement('script');
