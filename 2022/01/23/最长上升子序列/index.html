@@ -18,7 +18,7 @@
   <meta name="author" content="Ding">
   <meta name="keywords" content="">
   
-  <title>完全背包 - AltriaT</title>
+  <title>最长上升子序列 - AltriaT</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -175,7 +175,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="完全背包">
+            <span class="h2" id="subtitle" title="最长上升子序列">
               
             </span>
 
@@ -185,8 +185,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-01-19 07:50" pubdate>
-        2022年1月19日 早上
+      <time datetime="2022-01-23 11:23" pubdate>
+        2022年1月23日 上午
       </time>
     </span>
   
@@ -197,7 +197,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      458 字
+      372 字
     </span>
   
 
@@ -207,7 +207,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      7
+      6
        分钟
     </span>
   
@@ -237,20 +237,27 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">完全背包</h1>
+            <h1 style="display: none">最长上升子序列</h1>
             
             <div class="markdown-body">
-              <h1 id="完全背包"><a href="#完全背包" class="headerlink" title="完全背包"></a>完全背包</h1><p>有 N 种物品和一个容量是 V 的背包，每种物品都<strong>有无限件可用</strong>。</p>
-<p>第 i 种物品的体积是 v[i]，价值是 w[i]。</p>
-<p>求解将哪些物品装入背包，可使这些物品的总体积不超过背包容量，且总价值最大。<br>输出最大价值。</p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>由01背包的只有一件变为了有无限件，多加一重循环就可以了</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;algorithm&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">1010</span>;<br><span class="hljs-keyword">int</span> v[N],w[N];<br><span class="hljs-keyword">int</span> dp[N];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-keyword">int</span> n,m;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)<br>    &#123;<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span>,&amp;v[i],&amp;w[i]);<br>    &#125;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)<br>    &#123;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=m;j&gt;=v[i];j--)<br>        &#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k=<span class="hljs-number">1</span>;j&gt;=k*v[i];k++)<span class="hljs-comment">//枚举个数</span><br>			dp[j]=<span class="hljs-built_in">max</span>(dp[j],dp[j-k*v[i]]+k*w[i]);<br>        &#125;<br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>,dp[m]);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+              <h1 id="最长上升子序列"><a href="#最长上升子序列" class="headerlink" title="最长上升子序列"></a>最长上升子序列</h1><p>给定一个长度为 N 的数列，求数值严格单调递增的子序列的长度最长是多少。</p>
+<p>0&lt;N&lt;=1000</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-number">7</span><br><span class="hljs-symbol">3 </span><span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">1</span> <span class="hljs-number">8</span> <span class="hljs-number">5</span> <span class="hljs-number">6</span><br></code></pre></td></tr></table></figure>
 
-<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p>$dp[i][j]=max(dp[i-1][j],dp[i-1][j-v[i]]+w[i],dp[i-1][j-2<em>v[i]]+2</em>w[i],…,dp[i-1][j-k<em>v[i]]+k</em>w[i])$</p>
-<p>$dp[i][j-v[i]]=max(dp[i-1][j-v[i]],dp[i-1][j-2<em>v[i]]+2</em>w[i],dp[i-1][j-3<em>v[i]]+3</em>w[i],…,dp[i-1][j-k<em>v[i]]+k</em>w[i])$ </p>
-<p>可以发现dp[j]的dp[j]后面的项是就是dp[j-v[i]]，于是$dp[i][j]=max(dp[i-1][j],dp[i][j-v[i]])$</p>
-<p>只要将体积正向计算就可以先计算出$dp[i][j-v[i]]$</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;algorithm&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">1010</span>;<br><span class="hljs-keyword">int</span> v[N],w[N];<br><span class="hljs-keyword">int</span> dp[N];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-keyword">int</span> n,m;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)<br>    &#123;<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span>,&amp;v[i],&amp;w[i]);<br>    &#125;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)<br>    &#123;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=v[i];j&lt;=m;j++)<br>        &#123;<br>			dp[j]=<span class="hljs-built_in">max</span>(dp[j],dp[j-v[i]]+w[i]);<br>        &#125;<br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>,dp[m]);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">4<br></code></pre></td></tr></table></figure>
+
+<h2 id="思路1：dp思路"><a href="#思路1：dp思路" class="headerlink" title="思路1：dp思路"></a>思路1：dp思路</h2><p>集合：到达这个位置之前的最长上升序列</p>
+<p>属性：max</p>
+<p>状态表示：$dp[i]$</p>
+<p>状态方程：$dp[i]=dp[i-a]+1$</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;algorithm&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">int</span> n;<br><span class="hljs-keyword">int</span> a[<span class="hljs-number">1005</span>];<br><span class="hljs-keyword">int</span> dp[<span class="hljs-number">1005</span>];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    cin&gt;&gt;n;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)cin&gt;&gt;a[i];<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)<br>    &#123;<br>        dp[i]=<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=i<span class="hljs-number">-1</span>;j&gt;=<span class="hljs-number">0</span>;j--)<br>        &#123;<br>            <span class="hljs-keyword">if</span>(a[i]&gt;a[j])dp[i]=<span class="hljs-built_in">max</span>(dp[i],dp[j]+<span class="hljs-number">1</span>);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">int</span> res=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)res=<span class="hljs-built_in">max</span>(res,dp[i]);<br>    cout&lt;&lt;res;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>$O（N^2)$</p>
+<h2 id="思路二：二分"><a href="#思路二：二分" class="headerlink" title="思路二：二分"></a>思路二：二分</h2><p>将当前最长的子序列存入一个集合中，每次二分添加一个元素到其对应位置，若集合变大就证明长度变长。</p>
+<p>0&lt;N&lt;=100000</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;algorithm&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">100005</span>;<br><span class="hljs-keyword">int</span> n;<br><span class="hljs-keyword">int</span> a[N];<br><span class="hljs-keyword">int</span> cnt;<br><span class="hljs-keyword">int</span> q[N];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    cin&gt;&gt;n;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)cin&gt;&gt;a[i];<br>    q[<span class="hljs-number">0</span>]=<span class="hljs-number">-2e9</span>;<span class="hljs-comment">//初始化，使第一个值不受影响</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)<br>    &#123;<br>        <span class="hljs-keyword">int</span> l=<span class="hljs-number">0</span>,r=cnt;<br>        <span class="hljs-keyword">while</span>(l&lt;r)<br>        &#123;<br>			<span class="hljs-keyword">int</span> mid=l+r+<span class="hljs-number">1</span>&gt;&gt;<span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">if</span>(q[mid]&lt;a[i])l=mid;<br>            <span class="hljs-keyword">else</span> r=mid<span class="hljs-number">-1</span>;<br>        &#125;<br>        q[r+<span class="hljs-number">1</span>]=a[i];<br>        <span class="hljs-keyword">if</span>(r+<span class="hljs-number">1</span>&gt;cnt)cnt++;<br>    &#125;<br>    cout&lt;&lt;cnt;<br> 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
 
 
             </div>
@@ -288,18 +295,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/01/20/%E5%A4%9A%E9%87%8D%E8%83%8C%E5%8C%85/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">多重背包</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/01/18/01%E8%83%8C%E5%8C%85/">
-                        <span class="hidden-mobile">01背包</span>
+                      <a href="/2022/01/23/%E6%95%B0%E5%AD%97%E4%B8%89%E8%A7%92%E5%BD%A2/">
+                        <span class="hidden-mobile">数字三角形</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -321,8 +322,8 @@
     
       <script type="text/javascript">
         var disqus_config = function() {
-          this.page.url = 'http://altriat.top/2022/01/19/%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85/';
-          this.page.identifier = '/2022/01/19/%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85/';
+          this.page.url = 'http://altriat.top/2022/01/23/%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97/';
+          this.page.identifier = '/2022/01/23/%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97/';
         };
         Fluid.utils.loadComments('#disqus_thread', function() {
           var d = document, s = d.createElement('script');
