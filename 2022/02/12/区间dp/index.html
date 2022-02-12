@@ -18,7 +18,7 @@
   <meta name="author" content="Ding">
   <meta name="keywords" content="">
   
-  <title>最长上升子序列 - AltriaT</title>
+  <title>区间dp - AltriaT</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -175,7 +175,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="最长上升子序列">
+            <span class="h2" id="subtitle" title="区间dp">
               
             </span>
 
@@ -185,8 +185,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-01-23 11:23" pubdate>
-        2022年1月23日 上午
+      <time datetime="2022-02-12 20:09" pubdate>
+        2022年2月12日 晚上
       </time>
     </span>
   
@@ -197,7 +197,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      372 字
+      340 字
     </span>
   
 
@@ -207,7 +207,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      5
        分钟
     </span>
   
@@ -237,27 +237,17 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">最长上升子序列</h1>
+            <h1 style="display: none">区间dp</h1>
             
             <div class="markdown-body">
-              <h1 id="最长上升子序列"><a href="#最长上升子序列" class="headerlink" title="最长上升子序列"></a>最长上升子序列</h1><p>给定一个长度为 N 的数列，求数值严格单调递增的子序列的长度最长是多少。</p>
-<p>0&lt;N&lt;=1000</p>
-<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-number">7</span><br><span class="hljs-symbol">3 </span><span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">1</span> <span class="hljs-number">8</span> <span class="hljs-number">5</span> <span class="hljs-number">6</span><br></code></pre></td></tr></table></figure>
-
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">4<br></code></pre></td></tr></table></figure>
-
-<h2 id="思路1：dp思路"><a href="#思路1：dp思路" class="headerlink" title="思路1：dp思路"></a>思路1：dp思路</h2><p>集合：到达这个位置之前的最长上升序列</p>
-<p>属性：max</p>
-<p>状态表示：$dp[i]$</p>
-<p>状态方程：$dp[i]=dp[i-a]+1$</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;algorithm&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">int</span> n;<br><span class="hljs-keyword">int</span> a[<span class="hljs-number">1005</span>];<br><span class="hljs-keyword">int</span> dp[<span class="hljs-number">1005</span>];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    cin&gt;&gt;n;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)cin&gt;&gt;a[i];<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)<br>    &#123;<br>        dp[i]=<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=i<span class="hljs-number">-1</span>;j&gt;=<span class="hljs-number">0</span>;j--)<br>        &#123;<br>            <span class="hljs-keyword">if</span>(a[i]&gt;a[j])dp[i]=<span class="hljs-built_in">max</span>(dp[i],dp[j]+<span class="hljs-number">1</span>);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">int</span> res=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)res=<span class="hljs-built_in">max</span>(res,dp[i]);<br>    cout&lt;&lt;res;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>$O（N^2)$</p>
-<h2 id="思路二：二分"><a href="#思路二：二分" class="headerlink" title="思路二：二分"></a>思路二：二分</h2><p>将当前最长的子序列存入一个集合中，每次二分添加一个元素到其对应位置，若集合变大就证明长度变长。</p>
-<p>0&lt;N&lt;=100000</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;algorithm&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">100005</span>;<br><span class="hljs-keyword">int</span> n;<br><span class="hljs-keyword">int</span> a[N];<br><span class="hljs-keyword">int</span> cnt;<br><span class="hljs-keyword">int</span> q[N];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    cin&gt;&gt;n;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)cin&gt;&gt;a[i];<br>    q[<span class="hljs-number">0</span>]=<span class="hljs-number">-2e9</span>;<span class="hljs-comment">//初始化，使第一个值不受影响</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)<br>    &#123;<br>        <span class="hljs-keyword">int</span> l=<span class="hljs-number">0</span>,r=cnt;<br>        <span class="hljs-keyword">while</span>(l&lt;r)<br>        &#123;<br>			<span class="hljs-keyword">int</span> mid=l+r+<span class="hljs-number">1</span>&gt;&gt;<span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">if</span>(q[mid]&lt;a[i])l=mid;<br>            <span class="hljs-keyword">else</span> r=mid<span class="hljs-number">-1</span>;<br>        &#125;<br>        q[r+<span class="hljs-number">1</span>]=a[i];<br>        <span class="hljs-keyword">if</span>(r+<span class="hljs-number">1</span>&gt;cnt)cnt++;<br>    &#125;<br>    cout&lt;&lt;cnt;<br> 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
+              <h1 id="区间dp"><a href="#区间dp" class="headerlink" title="区间dp"></a>区间dp</h1><p>区间是连续的，所以这类问题是在某一求好值的区间中不断扩大求解，最终的到最终解。</p>
+<h2 id="题"><a href="#题" class="headerlink" title="题"></a>题</h2><p>有N堆石子排成一排，每堆石子有一定的数量。现要将N堆石子并成为一堆。合并的过程只能每次将相邻的两堆石子堆成一堆，每次合并花费的代价为这两堆石子的和，经过N-1次合并后成为一堆。求出总的代价最小值。</p>
+<p>0&lt;=N&lt;=300</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>$状态表示：f[a][b]$</p>
+<p>$状态集合：相邻几个石子重量合并的重量$</p>
+<p>$状态属性：min$</p>
+<p>$状态方程：f[i][j]=min(f[i][j],f[i][k]+f[k+1][j]+sum[i][j])$</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;algorithm&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">int</span> n;<br><span class="hljs-keyword">int</span> a[<span class="hljs-number">100010</span>];<br><span class="hljs-keyword">int</span> s[<span class="hljs-number">100010</span>];<br><span class="hljs-keyword">int</span> f[<span class="hljs-number">305</span>][<span class="hljs-number">305</span>];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    cin&gt;&gt;n;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)cin&gt;&gt;a[i];<br>    s[<span class="hljs-number">0</span>]=a[<span class="hljs-number">0</span>];<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;n;i++)s[i]=a[i]+s[i<span class="hljs-number">-1</span>];<br>    <span class="hljs-comment">//模拟区间长度</span><br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> len=<span class="hljs-number">2</span>;len&lt;=n;len++)<br>    &#123;<br>        <span class="hljs-comment">//模拟开始位置</span><br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i+len<span class="hljs-number">-1</span>&lt;n;i++)<br>        &#123;<br>            <span class="hljs-keyword">int</span> j=i+len<span class="hljs-number">-1</span>;<br>            f[i][j]=<span class="hljs-number">1e8</span>;<br>            <span class="hljs-comment">//模拟连接区间位置</span><br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k=i;k&lt;j;k++)<br>            &#123;<br>                f[i][j]=<span class="hljs-built_in">min</span>(f[i][j],f[i][k]+f[k+<span class="hljs-number">1</span>][j]+s[j]-s[i<span class="hljs-number">-1</span>]);<br>            &#125;<br>        &#125;<br>    &#125;<br>    cout&lt;&lt;f[<span class="hljs-number">0</span>][n<span class="hljs-number">-1</span>];<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
             </div>
@@ -295,18 +285,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/01/26/%E9%A2%84%E4%B9%A0%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">预习计算机操作系统</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/01/23/%E6%95%B0%E5%AD%97%E4%B8%89%E8%A7%92%E5%BD%A2/">
-                        <span class="hidden-mobile">数字三角形</span>
+                      <a href="/2022/01/26/%E9%A2%84%E4%B9%A0%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+                        <span class="hidden-mobile">预习计算机操作系统</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -328,8 +312,8 @@
     
       <script type="text/javascript">
         var disqus_config = function() {
-          this.page.url = 'http://altriat.top/2022/01/23/%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97/';
-          this.page.identifier = '/2022/01/23/%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97/';
+          this.page.url = 'http://altriat.top/2022/02/12/%E5%8C%BA%E9%97%B4dp/';
+          this.page.identifier = '/2022/02/12/%E5%8C%BA%E9%97%B4dp/';
         };
         Fluid.utils.loadComments('#disqus_thread', function() {
           var d = document, s = d.createElement('script');
